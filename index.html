@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08233f">
+<title>房仲業務工具箱｜免費試算原型</title>
+<style>
+:root{--navy:#08233f;--blue:#0d6ea8;--pale:#eaf5fb;--ink:#17212b;--muted:#718096;--line:#dbe4ec;--bg:#f4f7fa;--orange:#b74414;--orange-bg:#fff0e5;--green:#177245}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--ink);line-height:1.5}
+header{background:linear-gradient(135deg,var(--navy),#0d4773);color:#fff;padding:24px 18px 22px}
+.wrap{max-width:760px;margin:auto}header .eyebrow{font-size:12px;letter-spacing:1.4px;opacity:.75}h1{font-size:25px;margin:5px 0 4px}header p{margin:0;color:#d7e8f5;font-size:14px}
+main{max-width:760px;margin:auto;padding:16px 14px 100px}
+.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 14px}
+.tab{border:1px solid #d1deeb;background:#fff;border-radius:13px;padding:12px 9px;color:#4b5c6b;font-weight:700;font-size:14px;cursor:pointer}
+.tab.active{background:#155bb5;border-color:#155bb5;color:#fff;box-shadow:0 4px 12px #155bb526}
+.panel{display:none}.panel.active{display:block}
+.card{background:#fff;border:1px solid #e8edf2;border-radius:18px;padding:18px;margin-bottom:13px;box-shadow:0 4px 18px #08233f08}
+h2{font-size:19px;margin:0 0 5px;color:#17212b}.sub{color:var(--muted);font-size:13px;margin:0 0 17px}
+label{display:block;font-size:14px;font-weight:650;margin:13px 0 6px}
+input,select,textarea{width:100%;border:1.5px solid #c9d9e7;border-radius:11px;background:#fff;padding:12px 13px;font-size:16px;color:var(--ink);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #0d6ea81a}
+.fieldrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.inputunit{position:relative}.inputunit input{padding-right:66px}.unit{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#7d8995;font-size:13px;pointer-events:none}
+.result{background:var(--orange-bg);border-radius:16px;padding:17px;margin-top:16px}.result .caption{color:var(--orange);font-weight:750;font-size:14px}.big{font-size:32px;font-weight:800;letter-spacing:-.7px;color:var(--orange);margin:1px 0 4px;overflow-wrap:anywhere}.result p{margin:6px 0 0;font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;border-top:1px solid #f0d3c2;margin-top:14px;padding-top:12px}.stat small{display:block;color:#83786f;font-size:12px}.stat strong{font-size:18px}
+.bluebox{background:var(--pale);padding:13px 14px;border-radius:12px;color:#174c70;font-size:13px;margin-top:13px}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.btn{border:0;border-radius:11px;padding:12px 15px;background:var(--blue);color:white;font-weight:750;font-size:14px;cursor:pointer}.btn.secondary{background:#edf3f8;color:#20445e}.btn.dark{background:var(--navy)}.btn:active{transform:scale(.99)}
+.script{white-space:pre-wrap;background:#f6f8fa;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14px;min-height:110px}
+.range{width:100%;padding:0;accent-color:var(--blue)}
+.footnote{font-size:12px;color:#7c8791;margin:12px 2px 0}.pill{display:inline-block;font-size:11px;font-weight:700;color:#155bb5;background:#eaf2ff;border-radius:99px;padding:4px 8px;margin-bottom:8px}
+footer{position:fixed;bottom:0;left:0;right:0;background:#ffffffee;backdrop-filter:blur(12px);border-top:1px solid #dfe6ed;padding:10px 14px calc(10px + env(safe-area-inset-bottom));text-align:center;color:#6b7783;font-size:11px}
+@media(min-width:600px){.tabs{grid-template-columns:repeat(4,minmax(0,1fr))}.tab{font-size:13px}.card{padding:22px}main{padding-top:22px}.fieldrow.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:380px){.fieldrow{grid-template-columns:1fr}.big{font-size:28px}.tab{font-size:13px;padding:11px 6px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="eyebrow">REAL ESTATE · FIELD TOOLKIT</div><h1>房仲業務工具箱</h1><p>快速試算、整理重點，結果可複製傳給屋主 LINE</p></div></header>
+<main>
+<div class="tabs" role="tablist">
+<button class="tab active" data-tab="vacancy">空置損失</button>
+<button class="tab" data-tab="tax">租補稅務</button>
+<button class="tab" data-tab="withholding">租金扣繳</button>
+<button class="tab" data-tab="mortgage">房貸月付金</button>
+<button class="tab" data-tab="seller">售屋實拿</button>
+<button class="tab" data-tab="comps">成交單價</button>
+<button class="tab" data-tab="script">議價話術</button>
+</div>
+
+<section id="vacancy" class="panel active">
+<div class="card"><span class="pill">出租規劃</span><h2>空置損失試算</h2><p class="sub">把空租期間換算成年損失與平均每月實收租金。</p>
+<label>目前開價租金</label><div class="inputunit"><input id="vRent" type="number" min="0" value="25000"><span class="unit">元／月</span></div>
+<label>已經空了幾週</label><div class="inputunit"><input id="vWeeks" type="number" min="0" max="52" value="4"><span class="unit">週</span></div>
+<input id="vRange" class="range" type="range" min="0" max="12" step="1" value="4" aria-label="空置週數滑桿">
+<div style="display:flex;justify-content:space-between;color:#89939c;font-size:12px"><span>0 週</span><span>6 週</span><span>12 週</span></div>
+<div class="result"><div class="caption">估算平均每月實收租金</div><div class="big" id="vMonthly">23,077 元</div><p id="vSentence"></p><div class="stats"><div class="stat"><small>估算一年少收</small><strong id="vLoss">23,077 元</strong></div><div class="stat"><small>每多空一週，年化損失約</small><strong id="vWeekLoss">5,769 元</strong></div></div></div>
+<div class="btnrow"><button class="btn" onclick="copyText(makeVacancy())">複製 LINE 話術</button></div>
+</div></section>
+
+<section id="tax" class="panel">
+<div class="card"><span class="pill">出租稅務概算</span><h2>租補／租賃所得概算</h2><p class="sub">用可調整的費用率與稅率，估算房東租賃所得的概略影響；不是正式報稅結果。</p>
+<label>每月租金收入</label><div class="inputunit"><input id="tRent" type="number" min="0" value="25000"><span class="unit">元／月</span></div>
+<div class="fieldrow"><div><label>必要費用率</label><div class="inputunit"><input id="tExpense" type="number" min="0" max="100" value="43"><span class="unit">%</span></div></div><div><label>適用所得稅率（自行估）</label><div class="inputunit"><input id="tRate" type="number" min="0" max="100" value="12"><span class="unit">%</span></div></div></div>
+<label>每月其他可扣除費用（選填）</label><div class="inputunit"><input id="tOther" type="number" min="0" value="0"><span class="unit">元</span></div>
+<div class="result"><div class="caption">估算每年租賃所得稅影響</div><div class="big" id="tTax">23,688 元</div><p id="tDesc"></p><div class="stats"><div class="stat"><small>估算年租金收入</small><strong id="tAnnual">300,000 元</strong></div><div class="stat"><small>估算年應稅所得</small><strong id="tIncome">171,000 元</strong></div></div></div>
+<div class="bluebox">租金補貼資格、公益出租人優惠、房屋稅／地價稅及綜合所得稅可能因身分、年度與個案而異。請以財政部、國稅局及地方政府最新規定確認，不要把此數字當作稅額保證。</div>
+<div class="btnrow"><button class="btn" onclick="copyText(makeTax())">複製說明給屋主</button></div>
+</div></section>
+
+<section id="withholding" class="panel">
+<div class="card"><span class="pill">租金付款試算</span><h2>租金扣繳與二代健保</h2><p class="sub">輸入付款對象與比率，試算扣除額及實付金額。比率和門檻可自行調整。</p>
+<label>每月租金</label><div class="inputunit"><input id="wRent" type="number" min="0" value="25000"><span class="unit">元／月</span></div>
+<div class="fieldrow"><div><label>所得扣繳率</label><div class="inputunit"><input id="wRate" type="number" min="0" max="100" value="10"><span class="unit">%</span></div></div><div><label>健保補充保費率</label><div class="inputunit"><input id="wNhi" type="number" min="0" max="100" value="2.11"><span class="unit">%</span></div></div></div>
+<div class="fieldrow"><div><label>扣繳起算門檻</label><div class="inputunit"><input id="wThreshold" type="number" min="0" value="20010"><span class="unit">元</span></div></div><div><label>付款對象</label><select id="wType"><option value="resident">境內居住個人（示意）</option><option value="company">公司／行號（請另確認規則）</option><option value="nonresident">非境內居住個人（請另確認）</option></select></div></div>
+<div class="result"><div class="caption">估算每月扣除後實付租金</div><div class="big" id="wNet">21,972.50 元</div><p id="wDesc"></p><div class="stats"><div class="stat"><small>估算所得扣繳</small><strong id="wWithheld">2,500 元</strong></div><div class="stat"><small>估算補充保費</small><strong id="wNhiAmt">527.50 元</strong></div></div></div>
+<div class="bluebox">此頁僅是可調參數的情境試算，不代表所有租賃付款都必須扣繳或繳補充保費。實際適用對象、起扣標準、費率及申報義務請依付款人／收款人身分與最新法規確認。</div>
+<div class="btnrow"><button class="btn" onclick="copyText(makeWithholding())">複製試算摘要</button></div>
+</div></section>
+
+<section id="mortgage" class="panel">
+<div class="card"><span class="pill">購屋財務</span><h2>房貸月付金試算</h2><p class="sub">以本息平均攤還方式估算，不含各項手續費、保險與寬限期差異。</p>
+<label>房屋總價</label><div class="inputunit"><input id="mPrice" type="number" min="0" value="15000000"><span class="unit">元</span></div>
+<div class="fieldrow"><div><label>貸款成數</label><div class="inputunit"><input id="mPct" type="number" min="0" max="100" value="80"><span class="unit">%</span></div></div><div><label>年利率</label><div class="inputunit"><input id="mRate" type="number" min="0" max="30" step=".01" value="2.3"><span class="unit">%</span></div></div></div>
+<label>貸款年限</label><select id="mYears"><option>20</option><option selected>30</option><option>40</option></select>
+<div class="result"><div class="caption">估算每月本息攤還</div><div class="big" id="mMonthly">46,180 元</div><p id="mDesc"></p><div class="stats"><div class="stat"><small>估算貸款本金</small><strong id="mLoan">12,000,000 元</strong></div><div class="stat"><small>全期利息估算</small><strong id="mInterest">4,624,800 元</strong></div></div></div>
+<div class="btnrow"><button class="btn" onclick="copyText(makeMortgage())">複製試算給客戶</button></div>
+</div></section>
+
+<section id="seller" class="panel">
+<div class="card"><span class="pill">屋主委託／議價</span><h2>屋主售屋實拿金額</h2><p class="sub">將服務費、稅費及其他支出分開輸入，避免把估算誤當正式結算。</p>
+<label>預計成交總價</label><div class="inputunit"><input id="sPrice" type="number" min="0" value="16000000"><span class="unit">元</span></div>
+<div class="fieldrow"><div><label>賣方服務費率</label><div class="inputunit"><input id="sFee" type="number" min="0" max="100" step=".1" value="4"><span class="unit">%</span></div></div><div><label>其他稅費預估</label><div class="inputunit"><input id="sTax" type="number" min="0" value="300000"><span class="unit">元</span></div></div></div>
+<label>貸款清償／其他支出</label><div class="inputunit"><input id="sDebt" type="number" min="0" value="0"><span class="unit">元</span></div>
+<div class="result"><div class="caption">屋主估算實拿金額</div><div class="big" id="sNet">15,060,000 元</div><p id="sDesc"></p><div class="stats"><div class="stat"><small>賣方服務費估算</small><strong id="sFeeAmt">640,000 元</strong></div><div class="stat"><small>合計預估扣除</small><strong id="sDeductions">940,000 元</strong></div></div></div>
+<div class="bluebox">稅費可能涉及房地合一稅、土地增值稅、契稅／印花稅等不同項目，實際依取得時間、成本、持有期間、土地公告現值及交易條件計算。請向稅務專業人員確認。</div>
+<div class="btnrow"><button class="btn" onclick="copyText(makeSeller())">複製實拿摘要</button></div>
+</div></section>
+
+<section id="comps" class="panel">
+<div class="card"><span class="pill">行情溝通</span><h2>成交行情單價換算</h2><p class="sub">將成交總價換算成每坪單價，並可加入多筆案例比較。</p>
+<div class="fieldrow"><div><label>成交總價</label><div class="inputunit"><input id="cPrice" type="number" min="0" value="15680000"><span class="unit">元</span></div></div><div><label>權狀坪數</label><div class="inputunit"><input id="cPing" type="number" min=".01" step=".01" value="32.7"><span class="unit">坪</span></div></div></div>
+<div class="fieldrow"><div><label>車位價格（若需扣除）</label><div class="inputunit"><input id="cParking" type="number" min="0" value="0"><span class="unit">元</span></div></div><div><label>比較口徑</label><select id="cBasis"><option value="total">總價 ÷ 權狀坪數</option><option value="minus">（總價－車位）÷ 權狀坪數</option></select></div></div>
+<div class="result"><div class="caption">換算成交單價</div><div class="big" id="cUnit">47.95 萬／坪</div><p id="cDesc"></p></div>
+<h2 style="margin-top:22px">多筆案例比較</h2>
+<div class="fieldrow"><div><label>案例 A（萬／坪）</label><input id="cA" type="number" step=".01" value="49"></div><div><label>案例 B（萬／坪）</label><input id="cB" type="number" step=".01" value="49"></div></div>
+<div class="fieldrow"><div><label>案例 C（萬／坪）</label><input id="cC" type="number" step=".01" value="51"></div><div><label>本案開價（萬／坪）</label><input id="cAsk" type="number" step=".01" value="52.5"></div></div>
+<div class="bluebox" id="cCompare">案例平均單價約 49.67 萬／坪；本案開價與案例平均差異約 5.7%。</div>
+<div class="btnrow"><button class="btn" onclick="copyText(makeComps())">複製行情說明</button></div>
+</div></section>
+
+<section id="script" class="panel">
+<div class="card"><span class="pill">溝通輔助</span><h2>議價話術產生器</h2><p class="sub">選擇情境並填入金額，產生一段可調整、可直接複製的 LINE 訊息。</p>
+<label>溝通對象／情境</label><select id="gScenario"><option value="low">買方出價明顯偏低</option><option value="owner">向屋主回報市場反應、爭取議價</option><option value="fee">屋主質疑服務費</option><option value="follow">買方還在考慮／延後決定</option><option value="comp">用成交行情協助價格溝通</option></select>
+<div class="fieldrow"><div><label>屋主開價</label><div class="inputunit"><input id="gAsk" type="number" value="15580000"><span class="unit">元</span></div></div><div><label>買方出價</label><div class="inputunit"><input id="gOffer" type="number" value="10000000"><span class="unit">元</span></div></div></div>
+<label>補充重點（選填）</label><textarea id="gNote" rows="3" placeholder="例如：已安排多組客戶看屋、屋主目前希望維持價格……"></textarea>
+<label>產生的 LINE 話術</label><div id="gOutput" class="script"></div>
+<div class="btnrow"><button class="btn" onclick="generateScript()">重新產生</button><button class="btn dark" onclick="copyText(document.getElementById('gOutput').innerText)">複製 LINE 話術</button></div>
+</div></section>
+<p class="footnote">原型版提醒：所有數字皆為試算，不構成法律、稅務、貸款或投資建議。部分費率與門檻需依個案及最新法規確認。資料只在此瀏覽器頁面即時計算，不會傳送到伺服器。</p>
+</main>
+<footer>房仲業務工具箱 · 免費原型版　｜　建議先核對數字，再傳送給客戶</footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Math.max(0,Number($(id).value)||0);
+const money=n=>Math.round(n).toLocaleString('zh-TW');
+const money2=n=>Number(n).toLocaleString('zh-TW',{minimumFractionDigits:2,maximumFractionDigits:2});
+function copyText(text){if(!text){alert('目前沒有可複製的內容');return}if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(()=>alert('已複製，可貼到 LINE。')).catch(()=>fallbackCopy(text))}else fallbackCopy(text)}
+function fallbackCopy(text){const el=document.createElement('textarea');el.value=text;el.style.position='fixed';el.style.opacity='0';document.body.appendChild(el);el.select();try{document.execCommand('copy');alert('已複製，可貼到 LINE。')}catch(e){prompt('請手動複製以下內容：',text)}el.remove()}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===b.dataset.tab));window.scrollTo({top:0,behavior:'smooth'});if(b.dataset.tab==='script')generateScript()}));
+function updateVacancy(){let r=num('vRent'),w=Math.min(52,num('vWeeks'));$('vRange').value=Math.min(12,w);let loss=r*12*w/52,avg=(r*12-loss)/12;$('vMonthly').textContent=money(avg)+' 元';$('vLoss').textContent=money(loss)+' 元';$('vWeekLoss').textContent=money(r*12/52)+' 元';$('vSentence').textContent=`月租開價 ${money(r)} 元，空置 ${w} 週，估算一年少收 ${money(loss)} 元，平均每月實收約 ${money(avg)} 元。`}
+function makeVacancy(){return `【空置損失試算】\n月租開價：${money(num('vRent'))} 元\n空置期間：${num('vWeeks')} 週\n估算一年少收：${$('vLoss').textContent}\n平均每月實收：約 ${$('vMonthly').textContent}\n空置越久，租金收入損失越高；可依實際出租條件再評估租金與曝光策略。`}
+$('vRange').addEventListener('input',()=>{$('vWeeks').value=$('vRange').value;updateVacancy()});$('vWeeks').addEventListener('input',updateVacancy);$('vRent').addEventListener('input',updateVacancy);
+function updateTax(){let r=num('tRent'),e=Math.min(100,num('tExpense'))/100,rate=Math.min(100,num('tRate'))/100,other=num('tOther'),annual=r*12,income=Math.max(0,annual*(1-e)-other*12),tax=income*rate;$('tAnnual').textContent=money(annual)+' 元';$('tIncome').textContent=money(income)+' 元';$('tTax').textContent=money(tax)+' 元';$('tDesc').textContent=`依費用率 ${money(e*100)}%、估算稅率 ${money(rate*100)}% 計算，未納入其他所得、扣除額、優惠或地方稅費。`}
+function makeTax(){return `【租賃所得概算（非正式稅額）】\n月租金：${money(num('tRent'))} 元\n估算年租金：${$('tAnnual').textContent}\n假設必要費用率：${num('tExpense')}%\n估算年應稅所得：${$('tIncome').textContent}\n假設所得稅率：${num('tRate')}%\n估算年稅額影響：${$('tTax').textContent}\n實際稅額與租補／公益出租人優惠，請依個案及最新規定確認。`}
+function updateWithholding(){let r=num('wRent'),th=num('wThreshold'),wr=Math.min(100,num('wRate'))/100,nr=Math.min(100,num('wNhi'))/100,app=$('wType').value==='resident',w=app&&r>=th?r*wr:0,n=app&&r>=th?r*nr:0;$('wWithheld').textContent=money2(w)+' 元';$('wNhiAmt').textContent=money2(n)+' 元';$('wNet').textContent=money2(r-w-n)+' 元';$('wDesc').textContent=app?`依目前填入的門檻 ${money(th)} 元及比率示意；是否實際扣繳／扣取補充保費仍須依規定判斷。`:'此付款對象可能適用不同規則，本頁暫不推算扣除額，請先確認適用法規。';if(!app){$('wWithheld').textContent='需另確認';$('wNhiAmt').textContent='需另確認';$('wNet').textContent=money2(r)+' 元（未扣）'}}
+function makeWithholding(){return `【租金扣繳試算（需核對適用規定）】\n月租金：${money(num('wRent'))} 元\n付款對象：${$('wType').selectedOptions[0].text}\n假設扣繳：${$('wWithheld').textContent}\n假設補充保費：${$('wNhiAmt').textContent}\n試算實付：${$('wNet').textContent}\n本試算僅依輸入門檻及比率推估，請先確認付款人、收款人身分與最新規定。`}
+function updateMortgage(){let price=num('mPrice'),loan=price*Math.min(100,num('mPct'))/100,rate=num('mRate')/1200,months=Number($('mYears').value)*12,pay=rate===0?loan/months:loan*rate/(1-Math.pow(1+rate,-months)),interest=pay*months-loan;$('mMonthly').textContent=money(pay)+' 元';$('mLoan').textContent=money(loan)+' 元';$('mInterest').textContent=money(interest)+' 元';$('mDesc').textContent=`貸款 ${$('mYears').value} 年，假設利率固定；實際月付金會因銀行條件、利率變動及還款方式而不同。`}
+function makeMortgage(){return `【房貸月付金試算】\n房屋總價：${money(num('mPrice'))} 元\n貸款成數：${num('mPct')}%\n估算貸款本金：${$('mLoan').textContent}\n假設年利率：${num('mRate')}%\n貸款年限：${$('mYears').value} 年\n估算每月本息：${$('mMonthly').textContent}\n此為本息平均攤還估算，實際以銀行核貸條件為準。`}
+function updateSeller(){let p=num('sPrice'),fee=p*Math.min(100,num('sFee'))/100,tax=num('sTax'),debt=num('sDebt'),ded=fee+tax+debt,net=p-ded;$('sFeeAmt').textContent=money(fee)+' 元';$('sDeductions').textContent=money(ded)+' 元';$('sNet').textContent=money(net)+' 元';$('sDesc').textContent=`成交價扣除服務費、預估稅費及貸款清償／其他支出後，估算可實拿 ${money(net)} 元。`}
+function makeSeller(){return `【屋主售屋實拿概算】\n預計成交總價：${money(num('sPrice'))} 元\n賣方服務費（${num('sFee')}%）：${$('sFeeAmt').textContent}\n預估其他稅費：${money(num('sTax'))} 元\n貸款清償／其他支出：${money(num('sDebt'))} 元\n估算合計扣除：${$('sDeductions').textContent}\n估算屋主實拿：${$('sNet').textContent}\n稅費需依取得成本、持有期間、土地及房屋條件另行核算。`}
+function updateComps(){let p=num('cPrice'),ping=num('cPing'),parking=num('cParking'),basis=$('cBasis').value==='minus'?p-parking:p,unit=ping?basis/ping/10000:0;$('cUnit').textContent=unit.toFixed(2)+' 萬／坪';$('cDesc').textContent=$('cBasis').value==='minus'?`已扣除車位價格 ${money(parking)} 元後換算；請確認車位坪數及總價口徑一致。`:'以成交總價除以權狀坪數換算；如含車位，需確認比較案例口徑一致。';let vals=['cA','cB','cC'].map(num),avg=vals.reduce((a,b)=>a+b,0)/3,ask=num('cAsk'),diff=avg?(ask-avg)/avg*100:0;$('cCompare').textContent=`案例平均單價約 ${avg.toFixed(2)} 萬／坪；本案開價 ${ask.toFixed(2)} 萬／坪，與案例平均差異約 ${diff.toFixed(1)}%。請再考量樓層、屋齡、車位、屋況與交易時間。`}
+function makeComps(){return `【成交行情單價比較】\n本筆換算單價：${$('cUnit').textContent}\n案例 A：${num('cA')} 萬／坪\n案例 B：${num('cB')} 萬／坪\n案例 C：${num('cC')} 萬／坪\n案例平均：約 ${((num('cA')+num('cB')+num('cC'))/3).toFixed(2)} 萬／坪\n本案開價：${num('cAsk')} 萬／坪\n${$('cCompare').textContent}\n行情仍需依物件條件及實際交易資料判讀。`}
+function generateScript(){let ask=num('gAsk'),offer=num('gOffer'),gap=ask-offer,fmt=n=>money(n)+' 元',note=$('gNote').value.trim(),s=$('gScenario').value,txt='';if(s==='low')txt=`您好，謝謝您提出價格。屋主目前開價為 ${fmt(ask)}，您這次出價 ${fmt(offer)}，與開價差距約 ${fmt(gap)}。我理解您希望買在合理價格，我會協助把您的條件完整向屋主溝通，也建議我們一起確認您可接受的預算與成交條件，才有機會有效往下談。`;if(s==='owner')txt=`屋主您好，這段時間我持續協助曝光與接洽買方。從目前市場反應來看，買方對總價與付款條件仍相當謹慎。為了把有意願的客戶往成交推進，我建議可以先討論一個有策略的議價空間，遇到條件合適的買方時，我也能更有依據地協助雙方拉近差距。`;if(s==='fee')txt=`我理解您會在意服務費，所以我也希望把服務內容與成果說清楚。除了刊登曝光，還包含買方篩選、帶看安排、價格協商、條件確認與交易流程協助。我的目標是協助您在可接受的淨收入與交易條件下，盡可能提高成交機會；服務費與委託內容也都可以先透明確認。`;if(s==='follow')txt=`您好，想跟您確認一下目前看屋／出價後的想法。您可以放心把考量直接告訴我，不論是總價、貸款、屋況或家人討論，我都可以協助整理。若您仍有意願，我們可以先確認最重要的兩三個條件，再判斷下一步怎麼安排，避免您花時間看不適合的物件。`;if(s==='comp')txt=`屋主您好，我整理成交行情時，會把成交時間、樓層、屋齡、屋況、車位與坪數口徑一起比較，而不是只看單一筆價格。依目前輸入的案例，平均單價約 ${((num('cA')+num('cB')+num('cC'))/3).toFixed(2)} 萬／坪，本案開價約 ${num('cAsk').toFixed(2)} 萬／坪。這些數字可作為討論基礎，最後仍要回到本案條件與實際買方反應。`;if(note)txt+='\n\n補充資訊：'+note;$('gOutput').textContent=txt}
+function makeOnInput(ids,fn){ids.forEach(id=>$(id).addEventListener('input',fn));ids.forEach(id=>$(id).addEventListener('change',fn))}
+makeOnInput(['tRent','tExpense','tRate','tOther'],updateTax);makeOnInput(['wRent','wRate','wNhi','wThreshold','wType'],updateWithholding);makeOnInput(['mPrice','mPct','mRate','mYears'],updateMortgage);makeOnInput(['sPrice','sFee','sTax','sDebt'],updateSeller);makeOnInput(['cPrice','cPing','cParking','cBasis','cA','cB','cC','cAsk'],updateComps);makeOnInput(['gScenario','gAsk','gOffer','gNote'],generateScript);
+updateVacancy();updateTax();updateWithholding();updateMortgage();updateSeller();updateComps();generateScript();
+</script>
+</body>
+</html>
