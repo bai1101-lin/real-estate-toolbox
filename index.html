@@ -32,13 +32,29 @@ input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 
 footer{position:fixed;bottom:0;left:0;right:0;background:#ffffffee;backdrop-filter:blur(12px);border-top:1px solid #dfe6ed;padding:8px 12px calc(8px + env(safe-area-inset-bottom));text-align:center;color:#6b7783;font-size:11px}footer .footer-brand{font-weight:750;color:#08233f}footer .footer-actions{display:flex;justify-content:center;gap:8px;margin-top:5px}footer a{display:inline-block;text-decoration:none;border-radius:8px;padding:5px 10px;background:#eaf5fb;color:#0d4773;font-size:12px;font-weight:700}footer a.line-cta{background:#0d6ea8;color:#fff}
 @media(min-width:600px){.tabs{grid-template-columns:repeat(4,minmax(0,1fr))}.tab{font-size:13px}.card{padding:22px}main{padding-top:22px}.fieldrow.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:380px){.fieldrow{grid-template-columns:1fr}.big{font-size:28px}.tab{font-size:13px;padding:11px 6px}}
+
+/* 精選物件 */
+.property-intro{background:linear-gradient(135deg,#08233f,#0d4773);color:#fff;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 5px 18px #08233f18}
+.property-intro h2{color:#fff;margin-bottom:5px}.property-intro p{margin:0;color:#d7e8f5;font-size:13px}
+.property-card{background:#fff;border:1px solid #e2eaf1;border-radius:18px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 18px #08233f0c}
+.property-cover{min-height:145px;background:linear-gradient(135deg,#eaf5fb,#dcecf7);display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;color:#0d4773}
+.property-cover .house-icon{font-size:44px;line-height:1}.property-cover small{display:block;margin-top:7px;color:#607b8e}
+.property-body{padding:17px}.property-body h3{font-size:20px;margin:0 0 5px;color:#17212b}.property-location{font-size:13px;color:#718096;margin-bottom:10px}
+.property-price{font-size:27px;font-weight:800;color:#b74414;margin:2px 0 8px}.property-meta{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 12px}
+.property-meta span{background:#f1f6fa;border-radius:99px;padding:5px 9px;font-size:12px;color:#355269}
+.property-features{font-size:13px;color:#4f5d69;line-height:1.8;margin:8px 0 13px}
+.property-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.property-actions a{text-align:center;text-decoration:none;border-radius:11px;padding:12px 8px;font-size:14px;font-weight:750}
+.catalog-btn{background:#08233f;color:#fff}.inquiry-btn{background:#0d6ea8;color:#fff}
+@media(max-width:380px){.property-actions{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
-<header><div class="wrap"><div class="eyebrow">REAL ESTATE · FIELD TOOLKIT</div><h1>房仲業務工具箱</h1><p>快速試算、整理重點，結果可複製傳給屋主 LINE</p><div class="brandline"><strong>太平洋房屋｜員山環球加盟店</strong><br>林柏亦　｜　0921-156-660</div><div class="head-actions"><a class="head-link line" href="https://line.me/ti/p/iBafZ8o-pm" target="_blank" rel="noopener">＋ LINE 加好友</a><a class="head-link phone" href="tel:0921156660">☎ 直接撥打</a></div></div></header>
+<header><div class="wrap"><div class="eyebrow">REAL ESTATE · FIELD TOOLKIT</div><h1>房仲業務工具箱</h1><p>精選售屋物件＋房產試算工具，買房賣房都能快速找到重點</p><div class="brandline"><strong>太平洋房屋｜員山環球加盟店</strong><br>林柏亦　｜　0921-156-660</div><div class="head-actions"><a class="head-link line" href="https://line.me/ti/p/iBafZ8o-pm" target="_blank" rel="noopener">＋ LINE 加好友</a><a class="head-link phone" href="tel:0921156660">☎ 直接撥打</a></div></div></header>
 <main>
 <div class="tabs" role="tablist">
-<button class="tab active" data-tab="vacancy">空置損失</button>
+<button class="tab active" data-tab="properties">🏠 精選物件</button>
+<button class="tab" data-tab="vacancy">空置損失</button>
 <button class="tab" data-tab="tax">租補稅務</button>
 <button class="tab" data-tab="withholding">租金扣繳</button>
 <button class="tab" data-tab="mortgage">房貸月付金</button>
@@ -46,7 +62,36 @@ footer{position:fixed;bottom:0;left:0;right:0;background:#ffffffee;backdrop-filt
 <button class="tab" data-tab="comps">成交單價</button>
 </div>
 
-<section id="vacancy" class="panel active">
+
+<section id="properties" class="panel active">
+<div class="property-intro">
+<h2>我的精選售屋物件</h2>
+<p>正在找房嗎？先看看近期精選物件，有喜歡的可以直接 LINE 詢問或預約看屋。</p>
+</div>
+
+<div class="property-card">
+<div class="property-cover">
+<div><div class="house-icon">🏠</div><strong>歌德花園二樓美寓</strong><small>點擊下方可查看完整電子型錄與物件照片</small></div>
+</div>
+<div class="property-body">
+<h3>歌德花園二樓美寓</h3>
+<div class="property-location">📍 新北市中和區</div>
+<div class="property-price">1,598 萬</div>
+<div class="property-meta">
+<span>38.58 坪</span><span>3 房 2 廳 2 衛</span><span>2 樓／5 樓</span><span>公寓</span>
+</div>
+<div class="property-features">✓ 二樓樓層，進出相對便利<br>✓ 完整照片與詳細資訊請查看電子型錄<br>✓ 歡迎直接 LINE 詢問目前銷售狀況及預約看屋</div>
+<div class="property-actions">
+<a class="catalog-btn" href="https://db.housebox.com.tw/?d=054UP16029184K9237H" target="_blank" rel="noopener">查看完整電子型錄</a>
+<a class="inquiry-btn" href="https://line.me/ti/p/iBafZ8o-pm" target="_blank" rel="noopener">LINE 預約看屋</a>
+</div>
+</div>
+</div>
+
+<div class="bluebox">想找其他區域、格局或預算的房子，也可以直接 LINE 告訴我需求，我可以協助整理適合的物件。</div>
+</section>
+
+<section id="vacancy" class="panel">
 <div class="card"><span class="pill">出租規劃</span><h2>空置損失試算</h2><p class="sub">把空租期間換算成年損失與平均每月實收租金。</p>
 <label>目前開價租金</label><div class="inputunit"><input id="vRent" type="number" min="0" value="25000"><span class="unit">元／月</span></div>
 <label>已經空了幾週</label><div class="inputunit"><input id="vWeeks" type="number" min="0" max="52" value="4"><span class="unit">週</span></div>
