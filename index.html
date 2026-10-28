@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#08233f">
-<title>房仲業務工具箱｜免費試算原型</title>
+<title>房仲業務工具箱｜林柏亦｜太平洋房屋</title>
 <style>
 :root{--navy:#08233f;--blue:#0d6ea8;--pale:#eaf5fb;--ink:#17212b;--muted:#718096;--line:#dbe4ec;--bg:#f4f7fa;--orange:#b74414;--orange-bg:#fff0e5;--green:#177245}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--ink);line-height:1.5}
 header{background:linear-gradient(135deg,var(--navy),#0d4773);color:#fff;padding:24px 18px 22px}
-.wrap{max-width:760px;margin:auto}header .eyebrow{font-size:12px;letter-spacing:1.4px;opacity:.75}h1{font-size:25px;margin:5px 0 4px}header p{margin:0;color:#d7e8f5;font-size:14px}
+.wrap{max-width:760px;margin:auto}header .eyebrow{font-size:12px;letter-spacing:1.4px;opacity:.75}h1{font-size:25px;margin:5px 0 4px}header p{margin:0;color:#d7e8f5;font-size:14px}.brandline{margin-top:13px;color:#fff;font-size:13px;line-height:1.7}.head-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.head-link{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:11px;padding:10px 14px;font-size:13px;font-weight:750}.head-link.line{background:#fff;color:#08233f}.head-link.phone{border:1px solid #8fb2cb;color:#fff}
 main{max-width:760px;margin:auto;padding:16px 14px 100px}
 .tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 14px}
 .tab{border:1px solid #d1deeb;background:#fff;border-radius:13px;padding:12px 9px;color:#4b5c6b;font-weight:700;font-size:14px;cursor:pointer}
@@ -29,13 +29,13 @@ input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 
 .script{white-space:pre-wrap;background:#f6f8fa;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14px;min-height:110px}
 .range{width:100%;padding:0;accent-color:var(--blue)}
 .footnote{font-size:12px;color:#7c8791;margin:12px 2px 0}.pill{display:inline-block;font-size:11px;font-weight:700;color:#155bb5;background:#eaf2ff;border-radius:99px;padding:4px 8px;margin-bottom:8px}
-footer{position:fixed;bottom:0;left:0;right:0;background:#ffffffee;backdrop-filter:blur(12px);border-top:1px solid #dfe6ed;padding:10px 14px calc(10px + env(safe-area-inset-bottom));text-align:center;color:#6b7783;font-size:11px}
+footer{position:fixed;bottom:0;left:0;right:0;background:#ffffffee;backdrop-filter:blur(12px);border-top:1px solid #dfe6ed;padding:8px 12px calc(8px + env(safe-area-inset-bottom));text-align:center;color:#6b7783;font-size:11px}footer .footer-brand{font-weight:750;color:#08233f}footer .footer-actions{display:flex;justify-content:center;gap:8px;margin-top:5px}footer a{display:inline-block;text-decoration:none;border-radius:8px;padding:5px 10px;background:#eaf5fb;color:#0d4773;font-size:12px;font-weight:700}footer a.line-cta{background:#0d6ea8;color:#fff}
 @media(min-width:600px){.tabs{grid-template-columns:repeat(4,minmax(0,1fr))}.tab{font-size:13px}.card{padding:22px}main{padding-top:22px}.fieldrow.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:380px){.fieldrow{grid-template-columns:1fr}.big{font-size:28px}.tab{font-size:13px;padding:11px 6px}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><div class="eyebrow">REAL ESTATE · FIELD TOOLKIT</div><h1>房仲業務工具箱</h1><p>快速試算、整理重點，結果可複製傳給屋主 LINE</p></div></header>
+<header><div class="wrap"><div class="eyebrow">REAL ESTATE · FIELD TOOLKIT</div><h1>房仲業務工具箱</h1><p>快速試算、整理重點，結果可複製傳給屋主 LINE</p><div class="brandline"><strong>太平洋房屋｜員山環球加盟店</strong><br>林柏亦　｜　0921-156-660</div><div class="head-actions"><a class="head-link line" href="https://line.me/ti/p/iBafZ8o-pm" target="_blank" rel="noopener">＋ LINE 加好友</a><a class="head-link phone" href="tel:0921156660">☎ 直接撥打</a></div></div></header>
 <main>
 <div class="tabs" role="tablist">
 <button class="tab active" data-tab="vacancy">空置損失</button>
@@ -118,7 +118,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:#ffffffee;backdrop-filt
 </div></section>
 <p class="footnote">原型版提醒：所有數字皆為試算，不構成法律、稅務、貸款或投資建議。部分費率與門檻需依個案及最新法規確認。資料只在此瀏覽器頁面即時計算，不會傳送到伺服器。</p>
 </main>
-<footer>房仲業務工具箱 · 免費原型版　｜　建議先核對數字，再傳送給客戶</footer>
+<footer><div class="footer-brand">太平洋房屋｜員山環球加盟店　·　林柏亦 0921-156-660</div><div>試算結果僅供溝通參考，正式金額請依個案確認</div><div class="footer-actions"><a href="tel:0921156660">電話聯絡</a><a class="line-cta" href="https://line.me/ti/p/iBafZ8o-pm" target="_blank" rel="noopener">LINE 加好友</a></div></footer>
 <script>
 const $=id=>document.getElementById(id);
 const num=id=>Math.max(0,Number($(id).value)||0);
