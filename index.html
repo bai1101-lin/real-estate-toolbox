@@ -166,6 +166,94 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
   border-radius:10px;
   font-weight:750;
 }
+/* ===== 免費估價 ===== */
+
+.valuation-card{
+  max-width:760px;
+  margin:auto;
+}
+
+.valuation-form{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  margin-top:18px;
+}
+
+.valuation-form label{
+  display:block;
+  color:#08233f;
+  font-size:14px;
+  font-weight:750;
+}
+
+.valuation-form input,
+.valuation-form select,
+.valuation-form textarea{
+  width:100%;
+  margin-top:7px;
+  padding:12px 13px;
+  border:1px solid #dbe4ec;
+  border-radius:10px;
+  background:#fff;
+  color:#17212b;
+  font-size:15px;
+  font-family:inherit;
+  outline:none;
+}
+
+.valuation-form input:focus,
+.valuation-form select:focus,
+.valuation-form textarea:focus{
+  border-color:#0d6ea8;
+  box-shadow:0 0 0 3px rgba(13,110,168,.10);
+}
+
+.valuation-form textarea{
+  resize:vertical;
+  min-height:100px;
+}
+
+.required{
+  color:#b74414;
+}
+
+.valuation-submit{
+  width:100%;
+  border:0;
+  border-radius:11px;
+  padding:14px 16px;
+  background:#0d6ea8;
+  color:#fff;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.valuation-submit:active{
+  transform:scale(.99);
+}
+
+.valuation-privacy{
+  margin:0;
+  text-align:center;
+  color:#718096;
+  font-size:12px;
+  line-height:1.6;
+}
+
+@media(min-width:600px){
+  .valuation-form{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .valuation-form label:nth-child(3),
+  .valuation-form label:nth-child(9),
+  .valuation-submit,
+  .valuation-privacy{
+    grid-column:1 / -1;
+  }
+}
 </style>
 </head>
 
@@ -189,6 +277,7 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
 <div class="tabs">
 <button class="tab active" data-tab="properties">🏠 精選物件</button>
 <button class="tab" data-tab="rentals">🔑 租屋專區</button>
+ <button class="tab" data-tab="valuation">💰 免費估價</button>
 <button class="tab" data-tab="vacancy">空置損失</button>
 <button class="tab" data-tab="tax">租補稅務</button>
 <button class="tab" data-tab="withholding">租金扣繳</button>
@@ -327,7 +416,120 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
   </div>
 </section>
 <!-- ===== 租屋專區結束 ===== -->
-<section id="vacancy" class="panel">
+<!-- ===== 免費估價 ===== -->
+<section id="valuation" class="panel">
+  <div class="card valuation-card">
+
+    <span class="pill">屋主專區</span>
+    <h2>🏠 免費房屋估價</h2>
+    <p class="sub">
+      想知道您的房子現在值多少？填寫基本房屋資料，
+      我將依近期成交行情協助您進行初步評估。
+    </p>
+
+    <div class="valuation-form">
+
+      <label>
+        姓名 <span class="required">*</span>
+        <input
+          type="text"
+          id="ownerName"
+          placeholder="請輸入您的姓名"
+          autocomplete="name"
+        >
+      </label>
+
+      <label>
+        聯絡電話 <span class="required">*</span>
+        <input
+          type="tel"
+          id="ownerPhone"
+          placeholder="例如：0912-345-678"
+          autocomplete="tel"
+        >
+      </label>
+
+      <label>
+        房屋地址 <span class="required">*</span>
+        <input
+          type="text"
+          id="houseAddress"
+          placeholder="例如：新北市中和區員山路"
+        >
+      </label>
+
+      <label>
+        房屋類型
+        <select id="houseType">
+          <option value="">請選擇房屋類型</option>
+          <option value="公寓">公寓</option>
+          <option value="華廈">華廈</option>
+          <option value="大樓">大樓</option>
+          <option value="透天">透天</option>
+          <option value="店面">店面</option>
+          <option value="其他">其他</option>
+        </select>
+      </label>
+
+      <label>
+        房屋坪數
+        <input
+          type="text"
+          id="houseSize"
+          placeholder="例如：32.5坪"
+        >
+      </label>
+
+      <label>
+        格局
+        <input
+          type="text"
+          id="houseLayout"
+          placeholder="例如：3房2廳2衛"
+        >
+      </label>
+
+      <label>
+        車位
+        <select id="parking">
+          <option value="">請選擇</option>
+          <option value="有">有車位</option>
+          <option value="無">無車位</option>
+        </select>
+      </label>
+
+      <label>
+        目前需求
+        <select id="ownerNeed">
+          <option value="">請選擇目前需求</option>
+          <option value="想知道行情">想知道行情</option>
+          <option value="考慮出售">考慮出售</option>
+          <option value="近期準備出售">近期準備出售</option>
+        </select>
+      </label>
+
+      <label>
+        補充說明
+        <textarea
+          id="ownerNote"
+          rows="4"
+          placeholder="例如：屋況、樓層、目前是否自住、希望出售時間等"
+        ></textarea>
+      </label>
+
+      <button type="button" id="valuationSubmit" class="valuation-submit">
+        💬 送出免費估價需求
+      </button>
+
+      <p class="valuation-privacy">
+        🔒 您提供的資料僅供房屋行情評估及聯絡使用。
+      </p>
+
+    </div>
+  </div>
+</section>
+<!-- ===== 免費估價結束 ===== -->
+ <section id="vacancy" class="panel">
 <div class="card">
 <span class="pill">出租規劃</span><h2>空置損失試算</h2>
 <p class="sub">把空租期間換算成年損失與平均每月實收租金。</p>
