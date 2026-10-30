@@ -438,11 +438,10 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
 
 <div class="tabs">
   <button class="tab active" data-tab="home">🏡 首頁</button>
-  <button class="tab" data-tab="properties">🏠 精選物件</button>
-  <button class="tab" data-tab="rentals">🔑 租屋專區</button>
+  <button class="tab" data-tab="properties">🏠 我要買房</button>
+  <button class="tab" data-tab="rentals">🔑 我要租屋</button>
+  <button class="tab" data-tab="landlord">🏢 我要出租</button>
   <button class="tab" data-tab="valuation">💰 免費估價</button>
-  <button class="tab" data-tab="vacancy">空置損失</button>
-  <button class="tab" data-tab="mortgage">房貸月付金</button>
 </div>
 <!-- ===== 首頁導客 ===== -->
 <section id="home" class="panel active">
@@ -485,7 +484,14 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
         </span>
         <span class="home-arrow">›</span>
       </button>
-
+<button class="home-action" data-go="landlord">
+  <span class="home-action-icon">🏢</span>
+  <span class="home-action-text">
+    <strong>我要出租｜委託出租</strong>
+    <small>屋主委託出租，協助招租與媒合房客</small>
+  </span>
+  <span class="home-arrow">›</span>
+</button>
     </div>
   </div>
 
@@ -654,6 +660,171 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
 </section>
 <!-- ===== 租屋專區結束 ===== -->
 <!-- ===== 免費估價 ===== -->
+ <!-- ===== 我要出租 ===== -->
+<section id="landlord" class="panel">
+
+  <div class="card valuation-card">
+
+    <span class="pill">房東專區</span>
+    <h2>🏢 我要出租｜委託出租</h2>
+
+    <p class="sub">
+      有房屋想出租嗎？填寫基本資料，
+      我會依照您的需求協助招租、媒合合適房客。
+    </p>
+
+    <div class="valuation-form">
+
+      <label>
+        姓名 <span class="required">*</span>
+        <input
+          type="text"
+          id="landlordName"
+          placeholder="請輸入您的姓名"
+        >
+      </label>
+
+      <label>
+        聯絡電話 <span class="required">*</span>
+        <input
+          type="tel"
+          id="landlordPhone"
+          placeholder="例如：0912-345-678"
+        >
+      </label>
+
+      <label class="full">
+        出租房屋地址 <span class="required">*</span>
+        <input
+          type="text"
+          id="landlordAddress"
+          placeholder="例如：新北市中和區員山路"
+        >
+      </label>
+
+      <label>
+        房屋類型
+        <select id="landlordType">
+          <option value="">請選擇</option>
+          <option>套房</option>
+          <option>公寓</option>
+          <option>華廈</option>
+          <option>大樓</option>
+          <option>透天</option>
+          <option>店面</option>
+          <option>辦公室</option>
+          <option>其他</option>
+        </select>
+      </label>
+
+      <label>
+        房屋坪數
+        <input
+          type="number"
+          id="landlordPing"
+          placeholder="例如：30"
+        >
+      </label>
+
+      <label>
+        格局
+        <input
+          type="text"
+          id="landlordLayout"
+          placeholder="例如：2房2廳1衛"
+        >
+      </label>
+
+      <label>
+        車位
+        <select id="landlordParking">
+          <option value="">請選擇</option>
+          <option>有</option>
+          <option>無</option>
+        </select>
+      </label>
+
+      <label>
+        希望租金
+        <div class="inputunit">
+          <input
+            type="number"
+            id="landlordRent"
+            placeholder="例如：25000"
+          >
+          <span class="unit">元／月</span>
+        </div>
+      </label>
+
+      <label>
+        目前房屋狀況
+        <select id="landlordStatus">
+          <option value="">請選擇</option>
+          <option>空屋</option>
+          <option>自住中</option>
+          <option>出租中</option>
+          <option>即將交屋</option>
+          <option>其他</option>
+        </select>
+      </label>
+
+      <label>
+        可出租日期
+        <input
+          type="date"
+          id="landlordDate"
+        >
+      </label>
+
+      <label>
+        是否可租補
+        <select id="landlordSubsidy">
+          <option value="">請選擇</option>
+          <option>可以</option>
+          <option>不可以</option>
+          <option>再討論</option>
+        </select>
+      </label>
+
+      <label>
+        是否可養寵物
+        <select id="landlordPet">
+          <option value="">請選擇</option>
+          <option>可以</option>
+          <option>不可以</option>
+          <option>再討論</option>
+        </select>
+      </label>
+
+      <label class="full">
+        補充說明
+        <textarea
+          id="landlordNote"
+          rows="4"
+          placeholder="例如：家具設備、入住條件、管理費或其他出租需求"
+        ></textarea>
+      </label>
+
+      <div class="full">
+        <button
+          type="button"
+          class="valuation-submit"
+          id="landlordSubmit"
+        >
+          🏢 送出出租委託需求
+        </button>
+
+        <p class="valuation-note">
+          送出後將整理您的出租資料，並開啟 LINE 與林柏亦聯繫。
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- ===== 我要出租結束 ===== -->
 <section id="valuation" class="panel">
   <div class="card valuation-card">
 
@@ -989,6 +1160,94 @@ document.querySelectorAll("[data-go]").forEach(function(btn){
       block: "start"
     });
   });
+});
+// ===== 我要出租 LINE 送出功能 =====
+document.getElementById("landlordSubmit").addEventListener("click", async function(){
+
+  const name = document.getElementById("landlordName").value.trim();
+  const phone = document.getElementById("landlordPhone").value.trim();
+  const address = document.getElementById("landlordAddress").value.trim();
+
+  // ===== 必填欄位檢查 =====
+  if(!name){
+    alert("請填寫姓名");
+    document.getElementById("landlordName").focus();
+    return;
+  }
+
+  if(!phone){
+    alert("請填寫聯絡電話");
+    document.getElementById("landlordPhone").focus();
+    return;
+  }
+
+  if(!address){
+    alert("請填寫出租房屋地址");
+    document.getElementById("landlordAddress").focus();
+    return;
+  }
+
+  const type = document.getElementById("landlordType").value;
+  const ping = document.getElementById("landlordPing").value;
+  const layout = document.getElementById("landlordLayout").value;
+  const parking = document.getElementById("landlordParking").value;
+  const rent = document.getElementById("landlordRent").value;
+  const status = document.getElementById("landlordStatus").value;
+  const date = document.getElementById("landlordDate").value;
+  const subsidy = document.getElementById("landlordSubsidy").value;
+  const pet = document.getElementById("landlordPet").value;
+  const note = document.getElementById("landlordNote").value.trim();
+
+  // ===== 整理出租委託資料 =====
+  const message =
+`【出租委託需求】
+
+姓名：${name}
+聯絡電話：${phone}
+出租房屋地址：${address}
+房屋類型：${type || "未填寫"}
+房屋坪數：${ping ? ping + " 坪" : "未填寫"}
+格局：${layout || "未填寫"}
+車位：${parking || "未填寫"}
+希望租金：${rent ? Number(rent).toLocaleString() + " 元／月" : "未填寫"}
+目前房屋狀況：${status || "未填寫"}
+可出租日期：${date || "未填寫"}
+是否可租補：${subsidy || "未填寫"}
+是否可養寵物：${pet || "未填寫"}
+
+補充說明：
+${note || "無"}
+
+您好，我想委託出租以上房屋，再麻煩您與我聯絡，謝謝。`;
+
+  // ===== 複製資料並開啟 LINE =====
+  try{
+
+    await navigator.clipboard.writeText(message);
+
+    alert(
+      "出租資料已幫您整理並複製！\n\n接下來會開啟 LINE，請在聊天室直接「貼上」並傳送即可。"
+    );
+
+    window.open(
+      "https://line.me/ti/p/iBafZ8o-pm",
+      "_blank"
+    );
+
+  }catch(err){
+
+    // 部分瀏覽器無法自動複製
+    prompt(
+      "請複製以下出租資料，再傳送到 LINE：",
+      message
+    );
+
+    window.open(
+      "https://line.me/ti/p/iBafZ8o-pm",
+      "_blank"
+    );
+  }
+
 });
 </script>
 
