@@ -23,23 +23,42 @@ header p{margin:0;color:#d7e8f5;font-size:14px}
 .brandline a[href^="tel:"]{color:#fff;text-decoration:none;font-weight:700}
 
 main{max-width:760px;margin:auto;padding:16px 14px 100px}
+/* 基本版：手機維持原本兩欄 */
 .tabs{
   display:grid;
-  grid-template-columns:repeat(6,minmax(0,1fr));
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:8px;
   margin:0 0 14px;
 }
 
+/* 手機：前四個兩欄，第五個滿版 */
 .tab{
-grid-column:span 2 !important;
+  grid-column:span 1;
 }
 
-.tab:nth-child(4),
 .tab:nth-child(5){
-grid-column:span 3 !important;
+  grid-column:1 / -1;
 }
 
-@media (max-width:600px){
+/* 只有電腦版才套用 3＋2 */
+@media (min-width:601px){
+
+  .tabs{
+    grid-template-columns:repeat(6,minmax(0,1fr));
+  }
+
+  .tab:nth-child(1),
+  .tab:nth-child(2),
+  .tab:nth-child(3){
+    grid-column:span 2;
+  }
+
+  .tab:nth-child(4),
+  .tab:nth-child(5){
+    grid-column:span 3;
+  }
+
+}
   .tabs{
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
