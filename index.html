@@ -279,11 +279,7 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
 <button class="tab" data-tab="rentals">🔑 租屋專區</button>
  <button class="tab" data-tab="valuation">💰 免費估價</button>
 <button class="tab" data-tab="vacancy">空置損失</button>
-<button class="tab" data-tab="tax">租補稅務</button>
-<button class="tab" data-tab="withholding">租金扣繳</button>
 <button class="tab" data-tab="mortgage">房貸月付金</button>
-<button class="tab" data-tab="seller">售屋實拿</button>
-<button class="tab" data-tab="comps">成交單價</button>
 </div>
 
 <section id="properties" class="panel active">
@@ -543,32 +539,6 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
 </div>
 </section>
 
-<section id="tax" class="panel">
-<div class="card">
-<span class="pill">出租稅務概算</span><h2>租補／租賃所得概算</h2>
-<p class="sub">用可調整的費用率與稅率，估算房東租賃所得的概略影響。</p>
-<label>每月租金收入</label><div class="inputunit"><input id="tRent" type="number" value="25000"><span class="unit">元／月</span></div>
-<div class="fieldrow">
-<div><label>必要費用率</label><div class="inputunit"><input id="tExpense" type="number" value="43"><span class="unit">%</span></div></div>
-<div><label>適用所得稅率</label><div class="inputunit"><input id="tRate" type="number" value="12"><span class="unit">%</span></div></div>
-</div>
-<label>每月其他可扣除費用</label><div class="inputunit"><input id="tOther" type="number" value="0"><span class="unit">元</span></div>
-<div class="result"><div class="caption">估算每年租賃所得稅影響</div><div class="big" id="tTax"></div><div class="stats"><div class="stat"><small>估算年租金收入</small><strong id="tAnnual"></strong></div><div class="stat"><small>估算年應稅所得</small><strong id="tIncome"></strong></div></div></div>
-</div>
-</section>
-
-<section id="withholding" class="panel">
-<div class="card">
-<span class="pill">租金付款試算</span><h2>租金扣繳與二代健保</h2>
-<label>每月租金</label><div class="inputunit"><input id="wRent" type="number" value="25000"><span class="unit">元／月</span></div>
-<div class="fieldrow">
-<div><label>所得扣繳率</label><div class="inputunit"><input id="wRate" type="number" value="10"><span class="unit">%</span></div></div>
-<div><label>健保補充保費率</label><div class="inputunit"><input id="wNhi" type="number" value="2.11"><span class="unit">%</span></div></div>
-</div>
-<label>扣繳起算門檻</label><div class="inputunit"><input id="wThreshold" type="number" value="20010"><span class="unit">元</span></div>
-<div class="result"><div class="caption">估算每月扣除後實付租金</div><div class="big" id="wNet"></div><div class="stats"><div class="stat"><small>估算所得扣繳</small><strong id="wWithheld"></strong></div><div class="stat"><small>估算補充保費</small><strong id="wNhiAmt"></strong></div></div></div>
-</div>
-</section>
 
 <section id="mortgage" class="panel">
 <div class="card">
@@ -580,34 +550,6 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
 </div>
 <label>貸款年限</label><select id="mYears"><option>20</option><option selected>30</option><option>40</option></select>
 <div class="result"><div class="caption">估算每月本息攤還</div><div class="big" id="mMonthly"></div><div class="stats"><div class="stat"><small>估算貸款本金</small><strong id="mLoan"></strong></div><div class="stat"><small>全期利息估算</small><strong id="mInterest"></strong></div></div></div>
-</div>
-</section>
-
-<section id="seller" class="panel">
-<div class="card">
-<span class="pill">屋主委託／議價</span><h2>屋主售屋實拿金額</h2>
-<label>預計成交總價</label><div class="inputunit"><input id="sPrice" type="number" value="16000000"><span class="unit">元</span></div>
-<div class="fieldrow">
-<div><label>賣方服務費率</label><div class="inputunit"><input id="sFee" type="number" value="4"><span class="unit">%</span></div></div>
-<div><label>其他稅費預估</label><div class="inputunit"><input id="sTax" type="number" value="300000"><span class="unit">元</span></div></div>
-</div>
-<label>貸款清償／其他支出</label><div class="inputunit"><input id="sDebt" type="number" value="0"><span class="unit">元</span></div>
-<div class="result"><div class="caption">屋主估算實拿金額</div><div class="big" id="sNet"></div><div class="stats"><div class="stat"><small>賣方服務費估算</small><strong id="sFeeAmt"></strong></div><div class="stat"><small>合計預估扣除</small><strong id="sDeductions"></strong></div></div></div>
-</div>
-</section>
-
-<section id="comps" class="panel">
-<div class="card">
-<span class="pill">行情溝通</span><h2>成交行情單價換算</h2>
-<div class="fieldrow">
-<div><label>成交總價</label><div class="inputunit"><input id="cPrice" type="number" value="15680000"><span class="unit">元</span></div></div>
-<div><label>權狀坪數</label><div class="inputunit"><input id="cPing" type="number" value="32.7"><span class="unit">坪</span></div></div>
-</div>
-<div class="result"><div class="caption">換算成交單價</div><div class="big" id="cUnit"></div></div>
-<h2 style="margin-top:22px">多筆案例比較</h2>
-<div class="fieldrow"><div><label>案例 A</label><input id="cA" type="number" value="49"></div><div><label>案例 B</label><input id="cB" type="number" value="49"></div></div>
-<div class="fieldrow"><div><label>案例 C</label><input id="cC" type="number" value="51"></div><div><label>本案開價</label><input id="cAsk" type="number" value="52.5"></div></div>
-<div class="bluebox" id="cCompare"></div>
 </div>
 </section>
 
@@ -687,21 +629,6 @@ $("vSentence").textContent=`月租 ${money(r)} 元，空置 ${w} 週，估算一
 }
 function makeVacancy(){return `【空置損失試算】月租 ${money(num("vRent"))} 元，空置 ${num("vWeeks")} 週，估算一年少收 ${$("vLoss").textContent}。`}
 
-function updateTax(){
-let annual=num("tRent")*12;
-let income=Math.max(0,annual*(1-num("tExpense")/100)-num("tOther")*12);
-$("tAnnual").textContent=money(annual)+" 元";
-$("tIncome").textContent=money(income)+" 元";
-$("tTax").textContent=money(income*num("tRate")/100)+" 元";
-}
-
-function updateWithholding(){
-let r=num("wRent"),w=r>=num("wThreshold")?r*num("wRate")/100:0,n=r>=num("wThreshold")?r*num("wNhi")/100:0;
-$("wWithheld").textContent=money(w)+" 元";
-$("wNhiAmt").textContent=money(n)+" 元";
-$("wNet").textContent=money(r-w-n)+" 元";
-}
-
 function updateMortgage(){
 let loan=num("mPrice")*num("mPct")/100,rate=num("mRate")/1200,months=Number($("mYears").value)*12;
 let pay=rate===0?loan/months:loan*rate/(1-Math.pow(1+rate,-months));
@@ -710,35 +637,12 @@ $("mLoan").textContent=money(loan)+" 元";
 $("mInterest").textContent=money(pay*months-loan)+" 元";
 }
 
-function updateSeller(){
-let p=num("sPrice"),fee=p*num("sFee")/100,ded=fee+num("sTax")+num("sDebt");
-$("sFeeAmt").textContent=money(fee)+" 元";
-$("sDeductions").textContent=money(ded)+" 元";
-$("sNet").textContent=money(p-ded)+" 元";
-}
-
-function updateComps(){
-let unit=num("cPing")?num("cPrice")/num("cPing")/10000:0;
-$("cUnit").textContent=unit.toFixed(2)+" 萬／坪";
-let avg=(num("cA")+num("cB")+num("cC"))/3;
-let diff=avg?(num("cAsk")-avg)/avg*100:0;
-$("cCompare").textContent=`案例平均單價約 ${avg.toFixed(2)} 萬／坪；本案開價與案例平均差異約 ${diff.toFixed(1)}%。`;
-}
-
 ["vRent","vWeeks"].forEach(id=>$(id).addEventListener("input",updateVacancy));
 $("vRange").oninput=()=>{$("vWeeks").value=$("vRange").value;updateVacancy()};
-["tRent","tExpense","tRate","tOther"].forEach(id=>$(id).addEventListener("input",updateTax));
-["wRent","wRate","wNhi","wThreshold"].forEach(id=>$(id).addEventListener("input",updateWithholding));
 ["mPrice","mPct","mRate","mYears"].forEach(id=>$(id).addEventListener("input",updateMortgage));
-["sPrice","sFee","sTax","sDebt"].forEach(id=>$(id).addEventListener("input",updateSeller));
-["cPrice","cPing","cA","cB","cC","cAsk"].forEach(id=>$(id).addEventListener("input",updateComps));
 
 updateVacancy();
-updateTax();
-updateWithholding();
 updateMortgage();
-updateSeller();
-updateComps();
 // ===== 免費估價 LINE 送出功能 =====
 document.getElementById("valuationSubmit").addEventListener("click", async function(){
 
