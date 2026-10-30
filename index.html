@@ -23,10 +23,17 @@ header p{margin:0;color:#d7e8f5;font-size:14px}
 .brandline a[href^="tel:"]{color:#fff;text-decoration:none;font-weight:700}
 
 main{max-width:760px;margin:auto;padding:16px 14px 100px}
-.tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:0 0 14px}
- @media (max-width:600px){
+.tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:0 0 14px}
+.tab{grid-column:span 2}
+.tab:nth-child(4),.tab:nth-child(5){grid-column:span 3}
+@media (max-width:600px){
   .tabs{
     grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .tab,
+  .tab:nth-child(4),
+  .tab:nth-child(5){
+    grid-column:span 1;
   }
 }
 .tab{border:1px solid #d1deeb;background:#fff;border-radius:13px;padding:12px 9px;color:#4b5c6b;font-weight:700;font-size:14px;cursor:pointer}
