@@ -254,6 +254,168 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
     grid-column:1 / -1;
   }
 }
+/* ===== 首頁導客 ===== */
+
+.home-hero{
+  padding:24px;
+}
+
+.home-hero h2{
+  font-size:26px;
+  line-height:1.35;
+  margin:12px 0 8px;
+  color:#08233f;
+}
+
+.home-actions{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  margin-top:20px;
+}
+
+.home-action{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:16px;
+  border:1px solid #dbe4ec;
+  border-radius:14px;
+  background:#fff;
+  text-align:left;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.home-action-icon{
+  width:46px;
+  height:46px;
+  flex:0 0 46px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#eaf5fb;
+  border-radius:12px;
+  font-size:22px;
+}
+
+.home-action-text{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-width:0;
+}
+
+.home-action-text strong{
+  color:#08233f;
+  font-size:16px;
+}
+
+.home-action-text small{
+  color:#718096;
+  font-size:12px;
+  margin-top:4px;
+  line-height:1.5;
+}
+
+.home-arrow{
+  color:#0d6ea8;
+  font-size:28px;
+  font-weight:700;
+}
+
+/* 免費估價主入口 */
+.home-action.home-valuation{
+  background:#0d6ea8;
+  border-color:#0d6ea8;
+}
+
+.home-action.home-valuation .home-action-icon{
+  background:#fff;
+}
+
+.home-action.home-valuation strong,
+.home-action.home-valuation small,
+.home-action.home-valuation .home-arrow{
+  color:#fff;
+}
+
+/* 實用工具 */
+.home-tools{
+  margin-top:14px;
+}
+
+.home-tool-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+
+.home-tool{
+  border:1px solid #dbe4ec;
+  background:#fff;
+  border-radius:13px;
+  padding:15px 12px;
+  text-align:left;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.home-tool strong{
+  display:block;
+  color:#08233f;
+  font-size:14px;
+}
+
+.home-tool span{
+  display:block;
+  color:#718096;
+  font-size:11px;
+  margin-top:5px;
+  line-height:1.5;
+}
+
+/* LINE 導客 */
+.home-contact{
+  margin-top:14px;
+  text-align:center;
+  background:#eaf5fb;
+}
+
+.home-contact > strong{
+  display:block;
+  color:#08233f;
+  font-size:18px;
+}
+
+.home-contact p{
+  color:#718096;
+  font-size:13px;
+  margin:7px 0 13px;
+}
+
+.home-contact a{
+  display:block;
+  padding:12px 15px;
+  background:#0d6ea8;
+  color:#fff;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:800;
+}
+
+/* 電腦版 */
+@media(min-width:600px){
+  .home-actions{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .home-action.home-valuation{
+    grid-column:1 / -1;
+  }
+}
 </style>
 </head>
 
@@ -275,14 +437,93 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
 <main>
 
 <div class="tabs">
-<button class="tab active" data-tab="properties">🏠 精選物件</button>
-<button class="tab" data-tab="rentals">🔑 租屋專區</button>
- <button class="tab" data-tab="valuation">💰 免費估價</button>
-<button class="tab" data-tab="vacancy">空置損失</button>
-<button class="tab" data-tab="mortgage">房貸月付金</button>
+  <button class="tab active" data-tab="home">🏡 首頁</button>
+  <button class="tab" data-tab="properties">🏠 精選物件</button>
+  <button class="tab" data-tab="rentals">🔑 租屋專區</button>
+  <button class="tab" data-tab="valuation">💰 免費估價</button>
+  <button class="tab" data-tab="vacancy">空置損失</button>
+  <button class="tab" data-tab="mortgage">房貸月付金</button>
 </div>
+<!-- ===== 首頁導客 ===== -->
+<section id="home" class="panel active">
 
-<section id="properties" class="panel active">
+  <div class="card home-hero">
+    <span class="pill">林柏亦｜房產服務</span>
+
+    <h2>🏡 找房、賣房、租屋<br>都可以從這裡開始</h2>
+
+    <p class="sub">
+      買房找物件、屋主免費估價、租屋需求，
+      提供您快速又簡單的房產服務入口。
+    </p>
+
+    <div class="home-actions">
+
+      <button class="home-action home-valuation" data-go="valuation">
+        <span class="home-action-icon">💰</span>
+        <span class="home-action-text">
+          <strong>我想賣房｜免費估價</strong>
+          <small>了解目前房屋行情與市場價值</small>
+        </span>
+        <span class="home-arrow">›</span>
+      </button>
+
+      <button class="home-action" data-go="properties">
+        <span class="home-action-icon">🏠</span>
+        <span class="home-action-text">
+          <strong>我想買房｜精選物件</strong>
+          <small>查看目前精選出售物件</small>
+        </span>
+        <span class="home-arrow">›</span>
+      </button>
+
+      <button class="home-action" data-go="rentals">
+        <span class="home-action-icon">🔑</span>
+        <span class="home-action-text">
+          <strong>我想租屋｜出租物件</strong>
+          <small>查看目前住宅與店面出租物件</small>
+        </span>
+        <span class="home-arrow">›</span>
+      </button>
+
+    </div>
+  </div>
+
+  <div class="card home-tools">
+    <span class="pill">實用工具</span>
+    <h2>🧮 房產快速試算</h2>
+
+    <div class="home-tool-grid">
+
+      <button class="home-tool" data-go="mortgage">
+        <strong>🏦 房貸月付金</strong>
+        <span>快速試算每月房貸負擔</span>
+      </button>
+
+      <button class="home-tool" data-go="vacancy">
+        <strong>🏚️ 空置損失</strong>
+        <span>看看房屋空置正在損失多少租金</span>
+      </button>
+
+    </div>
+  </div>
+
+  <div class="card home-contact">
+    <strong>💬 不知道從哪裡開始？</strong>
+    <p>直接 LINE 告訴我您的需求，我來協助您。</p>
+
+    <a
+      href="https://line.me/ti/p/iBafZ8o-pm"
+      target="_blank"
+      rel="noopener"
+    >
+      LINE 詢問林柏亦
+    </a>
+  </div>
+
+</section>
+<!-- ===== 首頁導客結束 ===== -->
+<section id="properties" class="panel">
 
 <div class="property-intro">
 <h2>我的精選售屋物件</h2>
@@ -726,6 +967,28 @@ document.getElementById("valuationSubmit").addEventListener("click", async funct
     );
   }
 
+});
+// ===== 首頁導客按鈕切換功能 =====
+document.querySelectorAll("[data-go]").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    const target = this.dataset.go;
+
+    // 切換內容區
+    document.querySelectorAll(".panel").forEach(function(panel){
+      panel.classList.toggle("active", panel.id === target);
+    });
+
+    // 切換上方選單 active 狀態
+    document.querySelectorAll(".tab").forEach(function(tab){
+      tab.classList.toggle("active", tab.dataset.tab === target);
+    });
+
+    // 切換後回到功能區上方
+    document.querySelector("main").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
 });
 </script>
 
