@@ -5,7 +5,76 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#08233f">
 <title>房仲業務工具箱｜林柏亦｜太平洋房屋</title>
-  /* ===== 租屋專區 ===== */
+ 
+<style>
+:root{--navy:#08233f;--blue:#0d6ea8;--pale:#eaf5fb;--ink:#17212b;--muted:#718096;--line:#dbe4ec;--bg:#f4f7fa;--orange:#b74414;--orange-bg:#fff0e5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--ink);line-height:1.5}
+header{background:linear-gradient(135deg,var(--navy),#0d4773);color:#fff;padding:24px 18px 22px}
+.wrap{max-width:760px;margin:auto}
+header .eyebrow{font-size:12px;letter-spacing:1.4px;opacity:.75}
+h1{font-size:25px;margin:5px 0 4px}
+header p{margin:0;color:#d7e8f5;font-size:14px}
+.brandline{margin-top:13px;color:#fff;font-size:13px;line-height:1.7}
+.head-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.head-link{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:11px;padding:10px 14px;font-size:13px;font-weight:750}
+.head-link.line{background:#fff;color:#08233f}
+.head-link.phone{background:#b74414;border:1px solid #b74414;color:#fff}
+.brandline a[href^="tel:"]{color:#fff;text-decoration:none;font-weight:700}
+
+main{max-width:760px;margin:auto;padding:16px 14px 100px}
+.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 14px}
+.tab{border:1px solid #d1deeb;background:#fff;border-radius:13px;padding:12px 9px;color:#4b5c6b;font-weight:700;font-size:14px;cursor:pointer}
+.tab.active{background:#155bb5;border-color:#155bb5;color:#fff;box-shadow:0 4px 12px #155bb526}
+.panel{display:none}.panel.active{display:block}
+.card{background:#fff;border:1px solid #e8edf2;border-radius:18px;padding:18px;margin-bottom:13px;box-shadow:0 4px 18px #08233f08}
+h2{font-size:19px;margin:0 0 5px;color:#17212b}
+.sub{color:var(--muted);font-size:13px;margin:0 0 17px}
+label{display:block;font-size:14px;font-weight:650;margin:13px 0 6px}
+input,select,textarea{width:100%;border:1.5px solid #c9d9e7;border-radius:11px;background:#fff;padding:12px 13px;font-size:16px;color:var(--ink);outline:none}
+.fieldrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.inputunit{position:relative}.inputunit input{padding-right:66px}
+.unit{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#7d8995;font-size:13px;pointer-events:none}
+.result{background:var(--orange-bg);border-radius:16px;padding:17px;margin-top:16px}
+.result .caption{color:var(--orange);font-weight:750;font-size:14px}
+.big{font-size:32px;font-weight:800;color:var(--orange);margin:1px 0 4px;overflow-wrap:anywhere}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;border-top:1px solid #f0d3c2;margin-top:14px;padding-top:12px}
+.stat small{display:block;color:#83786f;font-size:12px}.stat strong{font-size:18px}
+.bluebox{background:var(--pale);padding:13px 14px;border-radius:12px;color:#174c70;font-size:13px;margin-top:13px}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.btn{border:0;border-radius:11px;padding:12px 15px;background:var(--blue);color:white;font-weight:750;font-size:14px;cursor:pointer}
+.range{width:100%;padding:0;accent-color:var(--blue)}
+.footnote{font-size:12px;color:#7c8791;margin:12px 2px 0}
+.pill{display:inline-block;font-size:11px;font-weight:700;color:#155bb5;background:#eaf2ff;border-radius:99px;padding:4px 8px;margin-bottom:8px}
+footer{position:fixed;bottom:0;left:0;right:0;background:#ffffffee;backdrop-filter:blur(12px);border-top:1px solid #dfe6ed;padding:8px 12px calc(8px + env(safe-area-inset-bottom));text-align:center;color:#6b7783;font-size:11px}
+footer .footer-brand{font-weight:750;color:#08233f}
+footer .footer-actions{display:flex;justify-content:center;gap:8px;margin-top:5px}
+footer a{display:inline-block;text-decoration:none;border-radius:8px;padding:5px 10px;background:#eaf5fb;color:#0d4773;font-size:12px;font-weight:700}
+footer a.line-cta{background:#0d6ea8;color:#fff}
+footer a[href^="tel:"]{background:#b74414;color:#fff}
+.property-intro{background:linear-gradient(135deg,#08233f,#0d4773);color:#fff;border-radius:18px;padding:18px;margin-bottom:14px}
+.property-intro h2{color:#fff;margin-bottom:5px}
+.property-intro p{margin:0;color:#d7e8f5;font-size:13px}
+.property-card{background:#fff;border:1px solid #e2eaf1;border-radius:18px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 18px #08233f0c}
+.property-cover{min-height:145px;background:linear-gradient(135deg,#eaf5fb,#dcecf7);display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;color:#0d4773}
+.house-icon{font-size:44px}
+.property-body{padding:17px}
+.property-body h3{font-size:20px;margin:0 0 5px}
+.property-location{font-size:13px;color:#718096;margin-bottom:10px}
+.property-price{font-size:27px;font-weight:800;color:#b74414;margin:2px 0 8px}
+.property-meta{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 12px}
+.property-meta span{background:#f1f6fa;border-radius:99px;padding:5px 9px;font-size:12px;color:#355269}
+.property-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.property-actions a{text-align:center;text-decoration:none;border-radius:11px;padding:12px 8px;font-size:14px;font-weight:750}
+.catalog-btn{background:#08233f;color:#fff}
+.inquiry-btn{background:#0d6ea8;color:#fff}
+.property-toolbar{display:flex;gap:7px;overflow-x:auto;padding:2px 0 12px}
+.filter-btn{flex:0 0 auto;border:1px solid #cbdbe7;background:#fff;color:#355269;border-radius:99px;padding:8px 12px;font-size:12px;font-weight:750}
+.filter-btn.active{background:#08233f;color:#fff;border-color:#08233f}
+.property-count{font-size:12px;color:#718096;margin:0 0 10px}
+.property-card[hidden]{display:none}
+@media(min-width:600px){.tabs{grid-template-columns:repeat(4,minmax(0,1fr))}.card{padding:22px}}
+/* ===== 租屋專區 ===== */
 
 .rental-grid{
   display:grid;
@@ -97,74 +166,6 @@
   border-radius:10px;
   font-weight:750;
 }
-<style>
-:root{--navy:#08233f;--blue:#0d6ea8;--pale:#eaf5fb;--ink:#17212b;--muted:#718096;--line:#dbe4ec;--bg:#f4f7fa;--orange:#b74414;--orange-bg:#fff0e5}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--ink);line-height:1.5}
-header{background:linear-gradient(135deg,var(--navy),#0d4773);color:#fff;padding:24px 18px 22px}
-.wrap{max-width:760px;margin:auto}
-header .eyebrow{font-size:12px;letter-spacing:1.4px;opacity:.75}
-h1{font-size:25px;margin:5px 0 4px}
-header p{margin:0;color:#d7e8f5;font-size:14px}
-.brandline{margin-top:13px;color:#fff;font-size:13px;line-height:1.7}
-.head-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
-.head-link{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:11px;padding:10px 14px;font-size:13px;font-weight:750}
-.head-link.line{background:#fff;color:#08233f}
-.head-link.phone{background:#b74414;border:1px solid #b74414;color:#fff}
-.brandline a[href^="tel:"]{color:#fff;text-decoration:none;font-weight:700}
-
-main{max-width:760px;margin:auto;padding:16px 14px 100px}
-.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 14px}
-.tab{border:1px solid #d1deeb;background:#fff;border-radius:13px;padding:12px 9px;color:#4b5c6b;font-weight:700;font-size:14px;cursor:pointer}
-.tab.active{background:#155bb5;border-color:#155bb5;color:#fff;box-shadow:0 4px 12px #155bb526}
-.panel{display:none}.panel.active{display:block}
-.card{background:#fff;border:1px solid #e8edf2;border-radius:18px;padding:18px;margin-bottom:13px;box-shadow:0 4px 18px #08233f08}
-h2{font-size:19px;margin:0 0 5px;color:#17212b}
-.sub{color:var(--muted);font-size:13px;margin:0 0 17px}
-label{display:block;font-size:14px;font-weight:650;margin:13px 0 6px}
-input,select,textarea{width:100%;border:1.5px solid #c9d9e7;border-radius:11px;background:#fff;padding:12px 13px;font-size:16px;color:var(--ink);outline:none}
-.fieldrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.inputunit{position:relative}.inputunit input{padding-right:66px}
-.unit{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#7d8995;font-size:13px;pointer-events:none}
-.result{background:var(--orange-bg);border-radius:16px;padding:17px;margin-top:16px}
-.result .caption{color:var(--orange);font-weight:750;font-size:14px}
-.big{font-size:32px;font-weight:800;color:var(--orange);margin:1px 0 4px;overflow-wrap:anywhere}
-.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;border-top:1px solid #f0d3c2;margin-top:14px;padding-top:12px}
-.stat small{display:block;color:#83786f;font-size:12px}.stat strong{font-size:18px}
-.bluebox{background:var(--pale);padding:13px 14px;border-radius:12px;color:#174c70;font-size:13px;margin-top:13px}
-.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
-.btn{border:0;border-radius:11px;padding:12px 15px;background:var(--blue);color:white;font-weight:750;font-size:14px;cursor:pointer}
-.range{width:100%;padding:0;accent-color:var(--blue)}
-.footnote{font-size:12px;color:#7c8791;margin:12px 2px 0}
-.pill{display:inline-block;font-size:11px;font-weight:700;color:#155bb5;background:#eaf2ff;border-radius:99px;padding:4px 8px;margin-bottom:8px}
-footer{position:fixed;bottom:0;left:0;right:0;background:#ffffffee;backdrop-filter:blur(12px);border-top:1px solid #dfe6ed;padding:8px 12px calc(8px + env(safe-area-inset-bottom));text-align:center;color:#6b7783;font-size:11px}
-footer .footer-brand{font-weight:750;color:#08233f}
-footer .footer-actions{display:flex;justify-content:center;gap:8px;margin-top:5px}
-footer a{display:inline-block;text-decoration:none;border-radius:8px;padding:5px 10px;background:#eaf5fb;color:#0d4773;font-size:12px;font-weight:700}
-footer a.line-cta{background:#0d6ea8;color:#fff}
-footer a[href^="tel:"]{background:#b74414;color:#fff}
-.property-intro{background:linear-gradient(135deg,#08233f,#0d4773);color:#fff;border-radius:18px;padding:18px;margin-bottom:14px}
-.property-intro h2{color:#fff;margin-bottom:5px}
-.property-intro p{margin:0;color:#d7e8f5;font-size:13px}
-.property-card{background:#fff;border:1px solid #e2eaf1;border-radius:18px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 18px #08233f0c}
-.property-cover{min-height:145px;background:linear-gradient(135deg,#eaf5fb,#dcecf7);display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;color:#0d4773}
-.house-icon{font-size:44px}
-.property-body{padding:17px}
-.property-body h3{font-size:20px;margin:0 0 5px}
-.property-location{font-size:13px;color:#718096;margin-bottom:10px}
-.property-price{font-size:27px;font-weight:800;color:#b74414;margin:2px 0 8px}
-.property-meta{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 12px}
-.property-meta span{background:#f1f6fa;border-radius:99px;padding:5px 9px;font-size:12px;color:#355269}
-.property-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.property-actions a{text-align:center;text-decoration:none;border-radius:11px;padding:12px 8px;font-size:14px;font-weight:750}
-.catalog-btn{background:#08233f;color:#fff}
-.inquiry-btn{background:#0d6ea8;color:#fff}
-.property-toolbar{display:flex;gap:7px;overflow-x:auto;padding:2px 0 12px}
-.filter-btn{flex:0 0 auto;border:1px solid #cbdbe7;background:#fff;color:#355269;border-radius:99px;padding:8px 12px;font-size:12px;font-weight:750}
-.filter-btn.active{background:#08233f;color:#fff;border-color:#08233f}
-.property-count{font-size:12px;color:#718096;margin:0 0 10px}
-.property-card[hidden]{display:none}
-@media(min-width:600px){.tabs{grid-template-columns:repeat(4,minmax(0,1fr))}.card{padding:22px}}
 </style>
 </head>
 
