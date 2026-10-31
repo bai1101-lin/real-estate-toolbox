@@ -23,28 +23,28 @@ header p{margin:0;color:#d7e8f5;font-size:14px}
 .brandline a[href^="tel:"]{color:#fff;text-decoration:none;font-weight:700}
 
 main{max-width:760px;margin:auto;padding:16px 14px 100px}
-/* ===== 導覽列排列 ===== */
+/* ===== 導覽列排列：最終版 ===== */
 
-/* 手機：2＋2＋1 */
+/* 手機版：2 + 2 + 1 */
 .tabs{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:repeat(4,minmax(0,1fr));
   gap:8px;
   margin:0 0 14px;
 }
 
 .tabs .tab{
-  grid-column:auto;
+  grid-column:span 2;
 }
 
 .tabs .tab:nth-child(5){
-  grid-column:1 / -1;
+  grid-column:2 / 4;
 }
 
-/* 電腦：3＋2 對稱 */
+/* 電腦版：3 + 2 */
 @media screen and (min-width:601px){
 
-  .tabs{
+.tabs{  
     grid-template-columns:repeat(6,minmax(0,1fr));
   }
 
@@ -61,24 +61,11 @@ main{max-width:760px;margin:auto;padding:16px 14px 100px}
   }
 
   .tabs .tab:nth-child(4){
-    grid-column:1 / 4;
+    grid-column:2 / 4;
   }
 
   .tabs .tab:nth-child(5){
-    grid-column:4 / 7;
-  }
-
-}
-
-  .tab:nth-child(1),
-  .tab:nth-child(2),
-  .tab:nth-child(3){
-    grid-column:span 2;
-  }
-
-  .tab:nth-child(4),
-  .tab:nth-child(5){
-    grid-column:span 3;
+    grid-column:4 / 6;
   }
 
 }
