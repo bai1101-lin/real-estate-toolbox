@@ -791,6 +791,166 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
     width:82px;
   }
 }
+/* ===== 物件比較結果 ===== */
+
+.compare-panel{
+  display:none;
+  margin:16px 0 22px;
+  background:#fff;
+  border:1px solid #dbe4ec;
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.compare-panel-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:14px;
+  background:#08233f;
+  color:#fff;
+}
+
+.compare-panel-head strong{
+  display:block;
+  font-size:17px;
+}
+
+.compare-panel-head span{
+  display:block;
+  margin-top:3px;
+  font-size:11px;
+  opacity:.75;
+}
+
+.compare-head-actions{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+#clearCompare,
+#closeCompare{
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:8px;
+  padding:8px 9px;
+  background:transparent;
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+#clearCompare{
+  background:#b74414;
+  border-color:#b74414;
+}
+
+.compare-table-wrap{
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+.compare-table{
+  width:100%;
+  min-width:760px;
+  border-collapse:collapse;
+  background:#fff;
+}
+
+.compare-table th,
+.compare-table td{
+  min-width:145px;
+  padding:12px 10px;
+  border-right:1px solid #e5ebf0;
+  border-bottom:1px solid #e5ebf0;
+  text-align:center;
+  vertical-align:middle;
+  font-size:13px;
+}
+
+.compare-table th:first-child,
+.compare-table td:first-child{
+  position:sticky;
+  left:0;
+  z-index:2;
+  min-width:85px;
+  width:85px;
+  background:#f4f7fa;
+  color:#08233f;
+  font-weight:800;
+}
+
+.compare-table thead th{
+  background:#eaf5fb;
+  color:#08233f;
+  font-weight:800;
+}
+
+.compare-table thead th:first-child{
+  z-index:3;
+}
+
+.compare-property-name{
+  font-weight:800;
+  line-height:1.45;
+}
+
+.compare-price{
+  color:#b74414;
+  font-weight:800;
+}
+
+.compare-winner{
+  display:inline-block;
+  margin-top:5px;
+  padding:3px 6px;
+  border-radius:6px;
+  background:#fff0e5;
+  color:#b74414;
+  font-size:10px;
+  font-weight:800;
+}
+
+.compare-link,
+.compare-line{
+  display:inline-block;
+  padding:8px 10px;
+  border-radius:8px;
+  color:#fff !important;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:800;
+}
+
+.compare-link{
+  background:#08233f;
+}
+
+.compare-line{
+  margin-top:6px;
+  background:#0d6ea8;
+}
+
+@media(max-width:600px){
+  .compare-table{
+    min-width:850px;
+  }
+
+  .compare-table th,
+  .compare-table td{
+    min-width:150px;
+  }
+
+  .compare-table th:first-child,
+  .compare-table td:first-child{
+    min-width:82px;
+    width:82px;
+  }
+}
 </style>
 </head>
 
@@ -1037,6 +1197,26 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
     </div>
 
     <button type="button" id="closeCompare">✕ 關閉比較</button>
+  </div>
+
+  <div class="compare-table-wrap">
+    <table class="compare-table" id="compareTable"></table>
+  </div>
+
+</div>
+  <!-- ===== 物件比較結果 ===== -->
+<div id="comparePanel" class="compare-panel">
+
+  <div class="compare-panel-head">
+    <div>
+      <strong>⚖️ 物件比較</strong>
+      <span>左右滑動查看比較結果</span>
+    </div>
+
+    <div class="compare-head-actions">
+      <button type="button" id="clearCompare">🗑 清除比較</button>
+      <button type="button" id="closeCompare">✕ 關閉</button>
+    </div>
   </div>
 
   <div class="compare-table-wrap">
@@ -2227,6 +2407,266 @@ openCompare.addEventListener("click",()=>{
 closeCompare.addEventListener("click",()=>{
 
   comparePanel.style.display="none";
+
+});
+/* ===== 最終版物件比較 ===== */
+
+const comparePanel=document.getElementById("comparePanel");
+const compareTable=document.getElementById("compareTable");
+const closeCompare=document.getElementById("closeCompare");
+const clearCompare=document.getElementById("clearCompare");
+
+function compareNumber(text){
+  return Number(String(text).replace(/[^\d.]/g,"")) || 0;
+}
+
+function compareRooms(text){
+  const match=String(text).match(/(\d+)(?:\+(\d+))?房/);
+
+  if(!match) return 0;
+
+  return Number(match[1]) + Number(match[2] || 0);
+}
+
+function compareUnitPrice(property){
+  const price=compareNumber(property[2]);
+  const ping=compareNumber(property[3]);
+
+  if(!price || !ping) return 0;
+
+  return price / ping;
+}
+
+function compareBadge(show,text){
+  return show
+    ? `<div class="compare-winner">🏆 ${text}</div>`
+    : "";
+}
+
+
+openCompare.addEventListener("click",()=>{
+
+  const checked=[
+    ...document.querySelectorAll(".compare-check:checked")
+  ];
+
+  if(checked.length<2){
+    alert("請至少選擇 2 間物件。");
+    return;
+  }
+
+  if(checked.length>5){
+    alert("最多可比較 5 間物件。");
+    return;
+  }
+
+  const selectedNames=checked.map(x=>x.dataset.name);
+
+  const selectedProperties=selectedNames
+    .map(name=>properties.find(p=>p[1]===name))
+    .filter(Boolean);
+
+  if(selectedProperties.length<2){
+    alert("找不到選取的物件資料，請重新選擇。");
+    return;
+  }
+
+  const prices=selectedProperties.map(p=>compareNumber(p[2]));
+  const pings=selectedProperties.map(p=>compareNumber(p[3]));
+  const rooms=selectedProperties.map(p=>compareRooms(p[4]));
+  const units=selectedProperties.map(p=>compareUnitPrice(p));
+
+  const validPrices=prices.filter(n=>n>0);
+  const validPings=pings.filter(n=>n>0);
+  const validRooms=rooms.filter(n=>n>0);
+  const validUnits=units.filter(n=>n>0);
+
+  const lowestPrice=validPrices.length ? Math.min(...validPrices) : 0;
+  const largestPing=validPings.length ? Math.max(...validPings) : 0;
+  const mostRooms=validRooms.length ? Math.max(...validRooms) : 0;
+  const lowestUnit=validUnits.length ? Math.min(...validUnits) : 0;
+
+
+  compareTable.innerHTML=`
+
+    <thead>
+      <tr>
+        <th>比較項目</th>
+
+        ${selectedProperties.map(p=>`
+          <th>
+            <div class="compare-property-name">
+              ${p[8] ? '<span class="new-badge">NEW</span><br>' : ''}
+              ${p[1]}
+            </div>
+          </th>
+        `).join("")}
+
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>📍 區域</td>
+        ${selectedProperties.map(p=>`
+          <td>${p[0]}</td>
+        `).join("")}
+      </tr>
+
+
+      <tr>
+        <td>💰 總價</td>
+
+        ${selectedProperties.map((p,i)=>`
+          <td>
+            <div class="compare-price">${p[2]}</div>
+
+            ${compareBadge(
+              prices[i]>0 && prices[i]===lowestPrice,
+              "總價最低"
+            )}
+          </td>
+        `).join("")}
+
+      </tr>
+
+
+      <tr>
+        <td>📐 坪數</td>
+
+        ${selectedProperties.map((p,i)=>`
+          <td>
+            ${p[3]}
+
+            ${compareBadge(
+              pings[i]>0 && pings[i]===largestPing,
+              "坪數最大"
+            )}
+          </td>
+        `).join("")}
+
+      </tr>
+
+
+      <tr>
+        <td>🛏 格局</td>
+
+        ${selectedProperties.map((p,i)=>`
+          <td>
+            ${p[4]}
+
+            ${compareBadge(
+              rooms[i]>0 && rooms[i]===mostRooms,
+              "房間最多"
+            )}
+          </td>
+        `).join("")}
+
+      </tr>
+
+
+      <tr>
+        <td>🏢 樓層</td>
+
+        ${selectedProperties.map(p=>`
+          <td>${p[5]}</td>
+        `).join("")}
+
+      </tr>
+
+
+      <tr>
+        <td>🏠 類型／車位</td>
+
+        ${selectedProperties.map(p=>`
+          <td>${p[6]}</td>
+        `).join("")}
+
+      </tr>
+
+
+      <tr>
+        <td>💵 約每坪</td>
+
+        ${selectedProperties.map((p,i)=>`
+          <td>
+
+            ${
+              units[i]>0
+              ? units[i].toFixed(1)+" 萬/坪"
+              : "—"
+            }
+
+            ${compareBadge(
+              units[i]>0 && units[i]===lowestUnit,
+              "單價最低"
+            )}
+
+          </td>
+        `).join("")}
+
+      </tr>
+
+
+      <tr>
+        <td>查看／詢問</td>
+
+        ${selectedProperties.map(p=>`
+          <td>
+
+            <a
+              class="compare-link"
+              href="${p[7]}"
+              target="_blank"
+              rel="noopener"
+            >
+              🏠 查看詳情
+            </a>
+
+            <br>
+
+            <a
+              class="compare-line"
+              href="${lineURL}"
+              target="_blank"
+              rel="noopener"
+            >
+              💬 LINE詢問
+            </a>
+
+          </td>
+        `).join("")}
+
+      </tr>
+
+    </tbody>
+  `;
+
+  comparePanel.style.display="block";
+
+  comparePanel.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+});
+
+
+closeCompare.addEventListener("click",()=>{
+  comparePanel.style.display="none";
+});
+
+
+clearCompare.addEventListener("click",()=>{
+
+  document.querySelectorAll(".compare-check")
+    .forEach(input=>input.checked=false);
+
+  compareTable.innerHTML="";
+  comparePanel.style.display="none";
+
+  updateCompareBar();
 
 });
 </script>
