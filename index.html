@@ -120,6 +120,121 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
 .filter-btn.active{background:#08233f;color:#fff;border-color:#08233f}
 .property-count{font-size:12px;color:#718096;margin:0 0 10px}
 .property-card[hidden]{display:none}
+/* ===== 買房需求配對器 ===== */
+.buyer-match-box{
+  margin:16px 0;
+  padding:18px;
+  background:#fff;
+  border:1px solid #dbe4ec;
+  border-radius:16px;
+  box-shadow:0 4px 14px rgba(8,35,63,.06);
+}
+
+.buyer-match-title{
+  font-size:20px;
+  font-weight:800;
+  color:#08233f;
+  margin-bottom:4px;
+}
+
+.buyer-match-sub{
+  font-size:13px;
+  color:#718096;
+  margin-bottom:18px;
+}
+
+.match-group{
+  margin-bottom:18px;
+}
+
+.match-label{
+  font-size:14px;
+  font-weight:800;
+  color:#17212b;
+  margin-bottom:8px;
+}
+
+.match-label small{
+  font-size:11px;
+  color:#718096;
+  font-weight:500;
+}
+
+.match-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.match-options label{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:9px 12px;
+  background:#f4f7fa;
+  border:1px solid #dbe4ec;
+  border-radius:10px;
+  font-size:13px;
+  cursor:pointer;
+}
+
+.match-options input{
+  accent-color:#0d6ea8;
+}
+
+.match-budget{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.match-budget input{
+  width:100%;
+  min-width:0;
+  padding:11px 10px;
+  border:1px solid #cbd5df;
+  border-radius:10px;
+  font-size:14px;
+  box-sizing:border-box;
+}
+
+.match-actions{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:8px;
+  margin-top:4px;
+}
+
+#startMatch,
+#resetMatch{
+  border:0;
+  border-radius:11px;
+  padding:13px 10px;
+  font-size:14px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+#startMatch{
+  background:#08233f;
+  color:#fff;
+}
+
+#resetMatch{
+  background:#eaf5fb;
+  color:#0d6ea8;
+}
+
+.match-result{
+  display:none;
+  margin-top:14px;
+  padding:12px;
+  background:#eaf5fb;
+  border-radius:10px;
+  color:#08233f;
+  font-size:13px;
+  font-weight:700;
+}
 @media(min-width:600px){.card{padding:22px}}
 /* ===== 租屋專區 ===== */
 
@@ -616,6 +731,72 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
     點擊前往林柏亦 Threads 瀏覽更多物件
   </span>
 </a>
+<!-- ===== 買房需求配對器 ===== -->
+<div class="buyer-match-box">
+
+  <div class="buyer-match-title">🔎 幫我找適合的房子</div>
+  <div class="buyer-match-sub">可複選條件，幫你快速篩選目前的精選物件</div>
+
+  <div class="match-group">
+    <div class="match-label">📍 想買區域 <small>可複選</small></div>
+    <div class="match-options" id="matchAreas">
+      <label><input type="checkbox" value="中和區"> 中和區</label>
+      <label><input type="checkbox" value="永和區"> 永和區</label>
+      <label><input type="checkbox" value="新店區"> 新店區</label>
+      <label><input type="checkbox" value="板橋區"> 板橋區</label>
+      <label><input type="checkbox" value="土城區"> 土城區</label>
+      <label><input type="checkbox" value="三重區"> 三重區</label>
+      <label><input type="checkbox" value="桃園區"> 桃園區</label>
+    </div>
+  </div>
+
+  <div class="match-group">
+    <div class="match-label">💰 總價預算</div>
+    <div class="match-budget">
+      <input id="matchMinPrice" type="number" inputmode="numeric" placeholder="最低，例如 1000">
+      <span>～</span>
+      <input id="matchMaxPrice" type="number" inputmode="numeric" placeholder="最高，例如 2000">
+      <span>萬</span>
+    </div>
+  </div>
+
+  <div class="match-group">
+    <div class="match-label">🛏 房型需求 <small>可複選</small></div>
+    <div class="match-options" id="matchRooms">
+      <label><input type="checkbox" value="1"> 1房</label>
+      <label><input type="checkbox" value="2"> 2房</label>
+      <label><input type="checkbox" value="3"> 3房</label>
+      <label><input type="checkbox" value="4"> 4房以上</label>
+    </div>
+  </div>
+
+  <div class="match-group">
+    <div class="match-label">🏢 住宅類型 <small>可複選</small></div>
+    <div class="match-options" id="matchTypes">
+      <label><input type="checkbox" value="公寓"> 公寓</label>
+      <label><input type="checkbox" value="華廈"> 華廈</label>
+      <label><input type="checkbox" value="大樓"> 大樓</label>
+      <label><input type="checkbox" value="透天"> 透天</label>
+    </div>
+  </div>
+
+  <div class="match-group">
+    <div class="match-label">🚗 車位需求</div>
+    <div class="match-options" id="matchParking">
+      <label><input type="checkbox" value="平面"> 平面車位</label>
+      <label><input type="checkbox" value="機械"> 機械車位</label>
+    </div>
+  </div>
+
+  <div class="match-actions">
+    <button type="button" id="startMatch">🔎 開始配對</button>
+    <button type="button" id="resetMatch">重新設定</button>
+  </div>
+
+  <div id="matchResult" class="match-result"></div>
+
+</div>
+<!-- ===== 買房需求配對器結束 ===== -->
 <div class="property-toolbar">
 <button class="filter-btn active" data-area-filter="全部">全部</button>
 <button class="filter-btn" data-area-filter="中和區">中和區</button>
@@ -1120,6 +1301,124 @@ list.innerHTML=shown.map(p=>`
 document.getElementById("propertyCount").textContent=`目前顯示 ${shown.length} 間物件`;
 }
 renderProperties();
+/* ===== 買房需求配對器 ===== */
+
+function getCheckedValues(id){
+  return [...document.querySelectorAll(`#${id} input:checked`)]
+    .map(input=>input.value);
+}
+
+function getPropertyPrice(priceText){
+  return Number(String(priceText).replace(/[^\d.]/g,"")) || 0;
+}
+
+function getPropertyRooms(roomText){
+  const match=String(roomText).match(/(\d+)\s*(?:\+?\d*)?房/);
+  return match ? Number(match[1]) : 0;
+}
+
+function propertyHasParking(typeText){
+  const text=String(typeText);
+  if(text.includes("平面")) return "平面";
+  if(text.includes("機械")) return "機械";
+  return "";
+}
+
+document.getElementById("startMatch").addEventListener("click",()=>{
+
+  const areas=getCheckedValues("matchAreas");
+  const rooms=getCheckedValues("matchRooms").map(Number);
+  const types=getCheckedValues("matchTypes");
+  const parking=getCheckedValues("matchParking");
+
+  const minPrice=Number(document.getElementById("matchMinPrice").value) || 0;
+  const maxPrice=Number(document.getElementById("matchMaxPrice").value) || Infinity;
+
+  const matched=properties.filter(p=>{
+
+    const area=p[0];
+    const price=getPropertyPrice(p[2]);
+    const room=getPropertyRooms(p[4]);
+    const type=String(p[6]);
+    const parkingType=propertyHasParking(p[6]);
+
+    const areaOK=
+      areas.length===0 ||
+      areas.includes(area);
+
+    const priceOK=
+      price>=minPrice &&
+      price<=maxPrice;
+
+    const roomOK=
+      rooms.length===0 ||
+      rooms.some(r=>{
+        if(r===4) return room>=4;
+        return room===r;
+      });
+
+    const typeOK=
+      types.length===0 ||
+      types.some(t=>type.includes(t));
+
+    const parkingOK=
+      parking.length===0 ||
+      parking.includes(parkingType);
+
+    return areaOK &&
+           priceOK &&
+           roomOK &&
+           typeOK &&
+           parkingOK;
+  });
+
+  const cards=document.querySelectorAll(".property-card");
+
+  cards.forEach(card=>{
+    const name=card.querySelector("h3")?.textContent.trim() || "";
+
+    const found=matched.some(p=>name.includes(p[1]));
+
+    card.hidden=!found;
+  });
+
+  const result=document.getElementById("matchResult");
+  result.style.display="block";
+
+  if(matched.length>0){
+    result.innerHTML=
+      `🎯 找到 <strong>${matched.length}</strong> 間符合需求的精選物件`;
+  }else{
+    result.innerHTML=
+      `目前精選物件中沒有完全符合條件的物件。<br>
+       <a href="${lineURL}" target="_blank"
+       style="display:inline-block;margin-top:8px;color:#0d6ea8;font-weight:800;">
+       💬 LINE 告訴林柏亦你的購屋需求
+       </a>`;
+  }
+
+  document.getElementById("propertyGrid")
+    ?.scrollIntoView({behavior:"smooth",block:"start"});
+});
+
+
+document.getElementById("resetMatch").addEventListener("click",()=>{
+
+  document.querySelectorAll(
+    "#matchAreas input,#matchRooms input,#matchTypes input,#matchParking input"
+  ).forEach(input=>input.checked=false);
+
+  document.getElementById("matchMinPrice").value="";
+  document.getElementById("matchMaxPrice").value="";
+
+  document.querySelectorAll(".property-card")
+    .forEach(card=>card.hidden=false);
+
+  const result=document.getElementById("matchResult");
+  result.style.display="none";
+  result.innerHTML="";
+
+});
 
 document.querySelectorAll(".filter-btn").forEach(btn=>btn.onclick=()=>{
 document.querySelectorAll(".filter-btn").forEach(x=>x.classList.toggle("active",x===btn));
