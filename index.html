@@ -1239,414 +1239,342 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
 <div class="bluebox">沒有看到適合的也沒關係，可以直接 LINE 告訴我預算、區域與格局，我再協助整理適合的物件。</div>
 </section>
 <!-- ===== 租屋專區 ===== -->
+
+<!-- ===== 租屋專區：統一新版 ===== -->
 <section id="rentals" class="panel">
   <div class="card">
-
     <span class="pill">精選出租</span>
     <h2>🔑 租屋專區</h2>
-    <p class="sub">目前出租物件｜點擊即可前往 591 查看最新完整資訊。</p>
+    <p class="sub">
+      精選住宅、套房、店面與廠辦，
+      點擊物件即可前往 591 查看完整資訊。
+    </p>
 
-   <div class="rental-grid">
+    <div class="rent-v2-tools">
+      <input
+        id="rentV2Search"
+        type="search"
+        placeholder="🔎 搜尋物件名稱、區域或類型"
+        aria-label="搜尋出租物件"
+      >
 
-  <div class="rental-card">
-    <div class="rental-icon">🏠</div>
-    <div class="rental-info">
-      <strong>花廣社區兩房</strong>
-      <span>📍 中和區｜住宅出租</span>
+      <div class="rent-v2-filters" id="rentV2Filters">
+        <button type="button" class="active" data-area="全部">全部</button>
+        <button type="button" data-area="中和區">中和</button>
+        <button type="button" data-area="板橋區">板橋</button>
+        <button type="button" data-area="土城區">土城</button>
+        <button type="button" data-area="永和區">永和</button>
+        <button type="button" data-area="其他">其他</button>
+      </div>
     </div>
-    <a href="https://591.to/e8qcr" target="_blank" rel="noopener">
-      查看 591
-    </a>
-  </div>
 
-  <div class="rental-card">
-    <div class="rental-icon">🏠</div>
-    <div class="rental-info">
-      <strong>板新捷運美妝兩房</strong>
-      <span>📍 中和區｜住宅出租</span>
-    </div>
-    <a href="https://591.to/eDaxH" target="_blank" rel="noopener">
-      查看 591
-    </a>
-  </div>
+    <p class="rent-v2-count" id="rentV2Count"></p>
 
-  <div class="rental-card">
-    <div class="rental-icon">🏪</div>
-    <div class="rental-info">
-      <strong>中和高中旁金店面</strong>
-      <span>📍 中和區｜店面出租</span>
-    </div>
-    <a href="https://591.to/e8q35" target="_blank" rel="noopener">
-      查看 591
-    </a>
-  </div>
-
-  <div class="rental-card">
-    <div class="rental-icon">🏠</div>
-    <div class="rental-info">
-      <strong>海山捷運方便停車一樓</strong>
-      <span>📍 土城區｜住宅出租</span>
-    </div>
-    <a href="https://591.to/e8qoo" target="_blank" rel="noopener">
-      查看 591
-    </a>
-  </div>
-
-  <div class="rental-card">
-    <div class="rental-icon">🏠</div>
-    <div class="rental-info">
-      <strong>永和國中全新裝潢大三房</strong>
-      <span>📍 永和區｜住宅出租</span>
-    </div>
-    <a href="https://591.to/e8qoO" target="_blank" rel="noopener">
-      查看 591
-    </a>
-  </div>
-
-  <div class="rental-card">
-    <div class="rental-icon">🏪</div>
-    <div class="rental-info">
-      <strong>景安捷運三角窗1+2樓</strong>
-      <span>📍 中和區｜店面出租</span>
-    </div>
-    <a href="https://591.to/e8qoK" target="_blank" rel="noopener">
-      查看 591
-    </a>
-  </div>
-
-  <div class="rental-card">
-    <div class="rental-icon">🏠</div>
-    <div class="rental-info">
-      <strong>積穗溫馨美妝兩房</strong>
-      <span>📍 中和區｜住宅出租</span>
-    </div>
-    <a href="https://591.to/eDCHN" target="_blank" rel="noopener">
-      查看 591
-    </a>
-  </div>
-
-</div>
+    <div class="rent-v2-grid" id="rentV2Grid"></div>
 
     <div class="rental-contact">
       <strong>沒有看到適合的物件？</strong>
       <span>告訴我您的租屋需求，我可以協助留意合適物件。</span>
-
       <a
         class="rental-line"
         href="https://line.me/ti/p/iBafZ8o-pm"
         target="_blank"
         rel="noopener"
-      >
-        LINE 詢問租屋
-      </a>
+      >💬 LINE 詢問租屋</a>
     </div>
-
   </div>
-
-<!-- ===== 新增 591 出租物件 ===== -->
-<div class="rental-new-list">
-  <h3>🏠 最新精選出租物件</h3>
-  <p>住宅、套房、店面與廠辦｜點擊查看 591 詳細資訊</p>
-
-  <div class="rental-new-grid">
-
-    <a href="https://business.591.com.tw/rent/22067149" target="_blank" rel="noopener">
-      <strong>🏭 中正工業大樓廠辦</strong>
-      <span>中和區｜廠辦出租</span>
-      <b>查看 591 詳情 →</b>
-    </a>
-
-    <a href="https://rent.591.com.tw/rent-detail-21935839.html" target="_blank" rel="noopener">
-      <strong>🏬 延和醒目店面</strong>
-      <span>店面／住辦出租</span>
-      <b>查看 591 詳情 →</b>
-    </a>
-
-    <a href="https://rent.591.com.tw/21690963" target="_blank" rel="noopener">
-      <strong>🏡 喜宴3+1房（可租補、寵物）</strong>
-      <span>中和區｜家庭住宅</span>
-      <b>查看 591 詳情 →</b>
-    </a>
-
-    <a href="https://rent.591.com.tw/22270175" target="_blank" rel="noopener">
-      <strong>🏠 亞東科大美套房</strong>
-      <span>套房出租</span>
-      <b>查看 591 詳情 →</b>
-    </a>
-
-    <a href="https://rent.591.com.tw/22270167" target="_blank" rel="noopener">
-      <strong>🏠 環球時尚新貴大2房</strong>
-      <span>兩房出租</span>
-      <b>查看 591 詳情 →</b>
-    </a>
-
-    <a href="https://rent.591.com.tw/22261029" target="_blank" rel="noopener">
-      <strong>🏠 板新捷運小資套房</strong>
-      <span>套房出租</span>
-      <b>查看 591 詳情 →</b>
-    </a>
-
-    <a href="https://rent.591.com.tw/22260501" target="_blank" rel="noopener">
-      <strong>🏠 中和捷運小資套房</strong>
-      <span>套房出租</span>
-      <b>查看 591 詳情 →</b>
-    </a>
-
-    <a href="https://rent.591.com.tw/22212464" target="_blank" rel="noopener">
-      <strong>🏡 捷運中和站溫馨三房</strong>
-      <span>三房出租</span>
-      <b>查看 591 詳情 →</b>
-    </a>
-
-    <a href="https://rent.591.com.tw/22177139" target="_blank" rel="noopener">
-      <strong>🏡 環球民享時尚二樓</strong>
-      <span>住宅出租</span>
-      <b>查看 591 詳情 →</b>
-    </a>
-
-    <a href="https://rent.591.com.tw/22188259" target="_blank" rel="noopener">
-      <strong>🏡 板橋金門街✮三房✚車位</strong>
-      <span>三房＋車位</span>
-      <b>查看 591 詳情 →</b>
-    </a>
-
-    <a href="https://rent.591.com.tw/22209141" target="_blank" rel="noopener">
-      <strong>🏡 中和高中邊間美寓</strong>
-      <span>公寓出租</span>
-      <b>查看 591 詳情 →</b>
-    </a>
-
-    <a href="https://rent.591.com.tw/22209145" target="_blank" rel="noopener">
-      <strong>🏡 正員山路大二樓</strong>
-      <span>住宅出租</span>
-      <b>查看 591 詳情 →</b>
-    </a>
-
-  </div>
-</div>
+</section>
 
 <style>
-.rental-new-list{
-  margin-top:24px;
-}
-.rental-new-list h3{
-  color:#08233f;
-  font-size:20px;
-  margin-bottom:6px;
-}
-.rental-new-list p{
-  color:#718096;
+/* ===== 租屋專區新版專用樣式 ===== */
+
+.rent-v2-tools{
+  margin-top:20px;
   margin-bottom:16px;
 }
-.rental-new-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}
-.rental-new-grid a{
-  display:flex;
-  flex-direction:column;
-  gap:9px;
-  padding:17px;
-  border:1px solid #dbe4ec;
-  border-radius:12px;
-  background:#fff;
-  text-decoration:none;
+
+#rentV2Search{
+  width:100%;
   box-sizing:border-box;
-}
-.rental-new-grid strong{
-  color:#08233f;
+  padding:13px 15px;
+  border:1px solid #dbe4ec;
+  border-radius:11px;
+  background:#fff;
+  color:#17212b;
   font-size:15px;
-  line-height:1.5;
+  outline:none;
 }
-.rental-new-grid span{
+
+#rentV2Search:focus{
+  border-color:#0d6ea8;
+}
+
+.rent-v2-filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+
+.rent-v2-filters button{
+  border:1px solid #dbe4ec;
+  border-radius:999px;
+  background:#f4f7fa;
+  color:#08233f;
+  padding:9px 15px;
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.rent-v2-filters button.active{
+  background:#0d6ea8;
+  border-color:#0d6ea8;
+  color:#fff;
+}
+
+.rent-v2-count{
+  margin:12px 0;
   color:#718096;
   font-size:13px;
+  font-weight:700;
 }
-.rental-new-grid b{
+
+.rent-v2-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.rent-v2-card{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:17px;
+  background:#fff;
+  border:1px solid #dbe4ec;
+  border-radius:13px;
+  box-sizing:border-box;
+}
+
+.rent-v2-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.rent-v2-icon{
+  font-size:25px;
+}
+
+.rent-v2-new{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:6px;
+  background:#b74414;
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+}
+
+.rent-v2-name{
+  margin:0;
+  color:#08233f;
+  font-size:16px;
+  line-height:1.5;
+  font-weight:800;
+  overflow-wrap:anywhere;
+}
+
+.rent-v2-meta{
+  color:#718096;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.rent-v2-actions{
   margin-top:auto;
-  padding:10px;
-  border-radius:8px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.rent-v2-actions a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:11px 8px;
+  border-radius:9px;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:800;
+  text-align:center;
+  box-sizing:border-box;
+}
+
+.rent-v2-detail{
   background:#eaf5fb;
   color:#0d6ea8;
-  text-align:center;
-  font-size:13px;
 }
-@media(max-width:600px){
-  .rental-new-grid{
+
+.rent-v2-line{
+  background:#0d6ea8;
+  color:#fff;
+}
+
+.rent-v2-empty{
+  grid-column:1/-1;
+  text-align:center;
+  padding:30px 15px;
+  color:#718096;
+  border:1px dashed #dbe4ec;
+  border-radius:12px;
+}
+
+@media(max-width:650px){
+  .rent-v2-grid{
     grid-template-columns:1fr;
+  }
+
+  .rent-v2-card{
+    padding:15px;
+  }
+
+  .rent-v2-filters button{
+    padding:9px 12px;
   }
 }
 </style>
-<!-- ===== 新增出租物件結束 ===== -->
 
-</section>
-<!-- ===== 租屋專區結束 ===== -->
-<!-- ===== 免費估價 ===== -->
- <!-- ===== 我要出租 ===== -->
-<section id="landlord" class="panel">
+<script>
+/* ===== 租屋專區新版資料與篩選 ===== */
+(function(){
+  const rentalsV2 = [
+    // 原本 7 間
+    ["中和區","花廣社區兩房","住宅出租","https://591.to/e8qcr",false],
+    ["中和區","板新捷運美妝兩房","住宅出租","https://591.to/eDaxH",false],
+    ["中和區","中和高中旁金店面","店面出租","https://591.to/e8q35",false],
+    ["土城區","海山捷運方便停車一樓","住宅出租","https://591.to/e8qoo",false],
+    ["永和區","永和國中全新裝潢大三房","住宅出租","https://591.to/e8qoO",false],
+    ["中和區","景安捷運三角窗1+2樓","店面出租","https://591.to/e8qoK",false],
+    ["中和區","積穗溫馨美妝兩房","住宅出租","https://591.to/eDCHN",false],
 
-  <div class="card valuation-card">
+    // 新增 12 間
+    ["中和區","中正工業大樓廠辦","廠辦出租","https://business.591.com.tw/rent/22067149",true],
+    ["待確認","延和醒目店面","店面出租","https://rent.591.com.tw/rent-detail-21935839.html",true],
+    ["中和區","喜宴3+1房（可租補、寵物）","住宅出租","https://rent.591.com.tw/21690963",true],
+    ["待確認","亞東科大美套房","套房出租","https://rent.591.com.tw/22270175",true],
+    ["待確認","環球時尚新貴大2房","兩房出租","https://rent.591.com.tw/22270167",true],
+    ["待確認","板新捷運小資套房","套房出租","https://rent.591.com.tw/22261029",true],
+    ["待確認","中和捷運小資套房","套房出租","https://rent.591.com.tw/22260501",true],
+    ["待確認","捷運中和站溫馨三房","三房出租","https://rent.591.com.tw/22212464",true],
+    ["待確認","環球民享時尚二樓","住宅出租","https://rent.591.com.tw/22177139",true],
+    ["板橋區","板橋金門街✮三房✚車位","三房＋車位","https://rent.591.com.tw/22188259",true],
+    ["待確認","中和高中邊間美寓","公寓出租","https://rent.591.com.tw/22209141",true],
+    ["待確認","正員山路大二樓","住宅出租","https://rent.591.com.tw/22209145",true]
+  ];
 
-    <span class="pill">房東專區</span>
-    <h2>🏢 我要出租｜委託出租</h2>
+  const grid=document.getElementById("rentV2Grid");
+  const search=document.getElementById("rentV2Search");
+  const count=document.getElementById("rentV2Count");
+  const filters=document.getElementById("rentV2Filters");
 
-    <p class="sub">
-      有房屋想出租嗎？填寫基本資料，
-      我會依照您的需求協助招租、媒合合適房客。
-    </p>
+  if(!grid || !search || !count || !filters) return;
 
-    <div class="valuation-form">
+  let selectedArea="全部";
+  const lineURL="https://line.me/ti/p/iBafZ8o-pm";
 
-      <label>
-        姓名 <span class="required">*</span>
-        <input
-          type="text"
-          id="landlordName"
-          placeholder="請輸入您的姓名"
-        >
-      </label>
+  function escapeHTML(value){
+    return String(value).replace(/[&<>"']/g,function(c){
+      return {
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+      }[c];
+    });
+  }
 
-      <label>
-        聯絡電話 <span class="required">*</span>
-        <input
-          type="tel"
-          id="landlordPhone"
-          placeholder="例如：0912-345-678"
-        >
-      </label>
+  function renderRentals(){
+    const keyword=search.value.trim().toLowerCase();
 
-      <label class="full">
-        出租房屋地址 <span class="required">*</span>
-        <input
-          type="text"
-          id="landlordAddress"
-          placeholder="例如：新北市中和區員山路"
-        >
-      </label>
+    const matched=rentalsV2.filter(function(r){
+      const areaOK=selectedArea==="全部" ||
+        (selectedArea==="其他"
+          ? !["中和區","板橋區","土城區","永和區"].includes(r[0])
+          : r[0]===selectedArea);
 
-      <label>
-        房屋類型
-        <select id="landlordType">
-          <option value="">請選擇</option>
-          <option>套房</option>
-          <option>公寓</option>
-          <option>華廈</option>
-          <option>大樓</option>
-          <option>透天</option>
-          <option>店面</option>
-          <option>辦公室</option>
-          <option>其他</option>
-        </select>
-      </label>
+      const keywordOK=!keyword ||
+        (r[0]+" "+r[1]+" "+r[2]).toLowerCase().includes(keyword);
 
-      <label>
-        房屋坪數
-        <input
-          type="number"
-          id="landlordPing"
-          placeholder="例如：30"
-        >
-      </label>
+      return areaOK && keywordOK;
+    });
 
-      <label>
-        格局
-        <input
-          type="text"
-          id="landlordLayout"
-          placeholder="例如：2房2廳1衛"
-        >
-      </label>
+    count.textContent="目前顯示 "+matched.length+" / "+rentalsV2.length+" 間出租物件";
 
-      <label>
-        車位
-        <select id="landlordParking">
-          <option value="">請選擇</option>
-          <option>有</option>
-          <option>無</option>
-        </select>
-      </label>
+    if(matched.length===0){
+      grid.innerHTML='<div class="rent-v2-empty">目前沒有符合條件的出租物件，歡迎透過 LINE 詢問。</div>';
+      return;
+    }
 
-      <label>
-        希望租金
-        <div class="inputunit">
-          <input
-            type="number"
-            id="landlordRent"
-            placeholder="例如：25000"
-          >
-          <span class="unit">元／月</span>
+    grid.innerHTML=matched.map(function(r){
+      const icon=r[2].includes("廠辦")?"🏭":
+        r[2].includes("店面")?"🏬":"🏠";
+
+      const areaText=r[0]==="待確認"?"區域待確認":r[0];
+
+      return `
+        <div class="rent-v2-card">
+          <div class="rent-v2-top">
+            <span class="rent-v2-icon">${icon}</span>
+            ${r[4]?'<span class="rent-v2-new">NEW</span>':""}
+          </div>
+
+          <h3 class="rent-v2-name">${escapeHTML(r[1])}</h3>
+
+          <div class="rent-v2-meta">
+            📍 ${escapeHTML(areaText)}｜${escapeHTML(r[2])}
+          </div>
+
+          <div class="rent-v2-actions">
+            <a class="rent-v2-detail"
+               href="${escapeHTML(r[3])}"
+               target="_blank"
+               rel="noopener">🏠 查看 591</a>
+
+            <a class="rent-v2-line"
+               href="${lineURL}"
+               target="_blank"
+               rel="noopener">💬 LINE 詢問</a>
+          </div>
         </div>
-      </label>
+      `;
+    }).join("");
+  }
 
-      <label>
-        目前房屋狀況
-        <select id="landlordStatus">
-          <option value="">請選擇</option>
-          <option>空屋</option>
-          <option>自住中</option>
-          <option>出租中</option>
-          <option>即將交屋</option>
-          <option>其他</option>
-        </select>
-      </label>
+  filters.addEventListener("click",function(e){
+    const button=e.target.closest("button[data-area]");
+    if(!button) return;
 
-      <label>
-        可出租日期
-        <input
-          type="date"
-          id="landlordDate"
-        >
-      </label>
+    selectedArea=button.dataset.area;
 
-      <label>
-        是否可租補
-        <select id="landlordSubsidy">
-          <option value="">請選擇</option>
-          <option>可以</option>
-          <option>不可以</option>
-          <option>再討論</option>
-        </select>
-      </label>
+    filters.querySelectorAll("button").forEach(function(b){
+      b.classList.toggle("active",b===button);
+    });
 
-      <label>
-        是否可養寵物
-        <select id="landlordPet">
-          <option value="">請選擇</option>
-          <option>可以</option>
-          <option>不可以</option>
-          <option>再討論</option>
-        </select>
-      </label>
+    renderRentals();
+  });
 
-      <label class="full">
-        補充說明
-        <textarea
-          id="landlordNote"
-          rows="4"
-          placeholder="例如：家具設備、入住條件、管理費或其他出租需求"
-        ></textarea>
-      </label>
+  search.addEventListener("input",renderRentals);
 
-      <div class="full">
-        <button
-          type="button"
-          class="valuation-submit"
-          id="landlordSubmit"
-        >
-          🏢 送出出租委託需求
-        </button>
+  renderRentals();
+})();
+</script>
+<!-- ===== 租屋專區新版結束 ===== -->
 
-        <p class="valuation-note">
-          送出後將整理您的出租資料，並開啟 LINE 與林柏亦聯繫。
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
 <!-- ===== 我要出租結束 ===== -->
 <section id="valuation" class="panel">
   <div class="card valuation-card">
