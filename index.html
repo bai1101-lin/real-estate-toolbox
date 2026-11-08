@@ -1343,6 +1343,8 @@ footer,
       <label><input type="checkbox" value="土城區"> 土城區</label>
       <label><input type="checkbox" value="三重區"> 三重區</label>
       <label><input type="checkbox" value="桃園區"> 桃園區</label>
+       <label><input type="checkbox" value="文山區"> 文山區</label>
+
     </div>
   </div>
 
@@ -1403,6 +1405,8 @@ footer,
 <button class="filter-btn" data-area-filter="新莊區">新莊區</button>
 <button class="filter-btn" data-area-filter="三重區">三重區</button>
 <button class="filter-btn" data-area-filter="桃園區">桃園區</button>
+<button class="filter-btn" data-area-filter="文山區">文山區</button>
+
 </div>
 
 <div class="property-count" id="propertyCount">目前顯示物件</div>
@@ -2032,6 +2036,11 @@ const properties=[
 ["中和區","新婚首購品味三房","1398 萬","29.73 坪","3房2廳2衛","3樓／5樓","公寓","https://db.housebox.com.tw/?d=054NZ55484831W6686B"],
 ["中和區","積穗國中方便停車一樓","1580 萬","21.1 坪","3房2廳1衛","1樓／4樓","公寓","https://db.housebox.com.tw/?d=054BZ34871905M2922J"],
 ["中和區","永興方正大空間+車位","2288 萬","47.36 坪","2廳2衛","7樓／9樓","華廈・平面車位","https://db.housebox.com.tw/?d=054AX57938657F6033T"],
+["中和區","華泰椰城標準三房","2388 萬","34.53 坪","3房2廳2衛","樓層詳見物件頁","大樓","https://db.housebox.com.tw/?d=054SB55662940M7757D",true],
+["中和區","[專]獨家景安站電梯三房+車位","2380 萬","43.01 坪","3房2廳2衛","樓層詳見物件頁","華廈・車位","https://db.housebox.com.tw/?d=054BP54353939A6317L",true],
+["中和區","源力時代美妝3房車","2950 萬","58.13 坪","3房2廳2衛","樓層詳見物件頁","大樓・坡道平面","https://db.housebox.com.tw/?d=054DY27134457Z2078M",true],
+["中和區","四季景觀邊間美屋+車位","1180 萬","21.2 坪","開放式格局・1衛","樓層詳見物件頁","大樓・機械車位","https://db.housebox.com.tw/?d=054YD21653255A4684N",true],
+["中和區","新婚首購品味三房","1398 萬","29.73 坪","3房2廳2衛","樓層詳見物件頁","住宅・無車位","https://db.housebox.com.tw/?d=054AH55002210V4320M",true],
 
 
 /* ===== 永和區 ===== */
@@ -2101,7 +2110,8 @@ list.innerHTML=shown.map(p=>`
 <div class="property-cover"><div><div class="house-icon">🏠</div><strong>${p[1]}</strong><small>查看完整電子型錄與物件照片</small></div></div>
 <div class="property-body">
 <h3>${p[1]} ${p[8] ? '<span class="new-badge">NEW</span>' : ''}</h3>
-<div class="property-location">📍 ${p[0]==="桃園區"?"桃園市":"新北市"}${p[0]}</div>
+<div class="property-location">📍 ${
+p[0]==="桃園區"?"桃園市":p[0]==="文山區"?"台北市":"新北市"}${p[0]}</div>
 <div class="property-price">${p[2]}</div>
 <div class="property-meta"><span>${p[3]}</span><span>${p[4]}</span><span>${p[5]}</span><span>${p[6]}</span></div>
 <div class="property-actions"><a class="catalog-btn" href="${p[7]}" target="_blank" rel="noopener">🏠 查看物件詳情</a><a class="inquiry-btn" href="${lineURL}" target="_blank" rel="noopener">💬 LINE 詢問這間</a></div>
