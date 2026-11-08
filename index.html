@@ -2816,5 +2816,117 @@ header.brand-hero{position:relative;isolation:isolate;overflow:hidden;background
 }
 @media(max-width:380px){.brand-hero .head-link{font-size:10px;padding:8px 9px}}
 </style>
+
+<!-- ===== 售屋物件排序功能 ===== -->
+<script>
+(function () {
+  const list = document.getElementById("propertyList");
+  if (!list || document.getElementById("propertySort")) return;
+
+  // 建立排序選單
+  const bar = document.createElement("div");
+  bar.style.cssText =
+    "display:flex;align-items:center;gap:10px;" +
+    "margin:12px 0 16px;flex-wrap:wrap;";
+
+  bar.innerHTML = `
+    <label for="propertySort"
+      style="margin:0;font-weight:700;white-space:nowrap">
+      ↕ 物件排序
+    </label>
+    <select id="propertySort"
+      style="flex:1;min-width:160px;padding:11px 12px;
+      border:1px solid #DCCFC3;border-radius:11px;
+      background:#fff;color:#604A3B;font-size:14px">
+      <option value="default">預設排序</option>
+      <option value="low">總價：由低到高</option>
+      <option value="high">總價：由高到低</option>
+      <option value="new">最新物件優先</option>
+    </select>
+  `;
+
+  const count = document.getElementById("propertyCount");
+  if (count) {
+    count.insertAdjacentElement("afterend", bar);
+  } else {
+    list.insertAdjacentElement("beforebegin", bar);
+  }
+
+  const select = document.getElementById("propertySort");
+
+  // 原始物件順序依照 properties 陣列
+  const originalOrder = new Map(
+    (typeof properties !== "undefined" ? properties : [])
+      .map((p, i) => [p[1], i])
+  );
+
+  function getName(card) {
+    return card.querySelector(".compare-check")
+      ?.dataset.name ||
+      card.querySelector("h3")?.textContent.trim() ||
+      "";
+  }
+
+  function getPrice(card) {
+    const text = card.querySelector(".property-price")
+      ?.textContent || "";
+    return Number(text.replace(/[^\d.]/g, "")) || 0;
+  }
+
+  function getIndex(card) {
+    return originalOrder.get(getName(card)) ??
+      Number.MAX_SAFE_INTEGER;
+  }
+
+  function sortCards() {
+    const cards = [...list.children]
+      .filter(el => el.classList.contains("property-card"));
+
+    if (cards.length < 2) return;
+
+    const mode = select.value;
+
+    const sorted = [...cards].sort((a, b) => {
+      if (mode === "low") {
+        return getPrice(a) - getPrice(b) ||
+          getIndex(a) - getIndex(b);
+      }
+
+      if (mode === "high") {
+        return getPrice(b) - getPrice(a) ||
+          getIndex(a) - getIndex(b);
+      }
+
+      if (mode === "new") {
+        const aNew = !!a.querySelector(".new-badge");
+        const bNew = !!b.querySelector(".new-badge");
+        return Number(bNew) - Number(aNew) ||
+          getIndex(a) - getIndex(b);
+      }
+
+      return getIndex(a) - getIndex(b);
+    });
+
+    // 已經排序正確時，不重新操作 DOM
+    if (sorted.every((card, i) => card === cards[i])) {
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+    sorted.forEach(card => fragment.appendChild(card));
+    list.appendChild(fragment);
+  }
+
+  select.addEventListener("change", sortCards);
+
+  // 區域配對重新產生卡片後，保留目前排序
+  const observer = new MutationObserver(sortCards);
+  observer.observe(list, { childList: true });
+
+  sortCards();
+})();
+</script>
+<!-- ===== 售屋物件排序功能結束 ===== -->
+
 </body>
 </html>
