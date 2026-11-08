@@ -1400,11 +1400,12 @@ footer,
 <button class="filter-btn" data-area-filter="土城區">土城區</button>
 <button class="filter-btn" data-area-filter="永和區">永和區</button>
 <button class="filter-btn" data-area-filter="新店區">新店區</button>
+<button class="filter-btn" data-area-filter="新莊區">新莊區</button>
 <button class="filter-btn" data-area-filter="三重區">三重區</button>
 <button class="filter-btn" data-area-filter="桃園區">桃園區</button>
 </div>
 
-<div class="property-count" id="propertyCount">目前顯示 14 間物件</div>
+<div class="property-count" id="propertyCount">目前顯示物件</div>
 <!-- ===== 物件比較操作列 ===== -->
 <div id="compareBar" class="compare-bar">
   <div class="compare-status">
@@ -2184,14 +2185,13 @@ document.getElementById("startMatch").addEventListener("click",()=>{
            parkingOK;
   });
 
-  const cards=document.querySelectorAll(".property-card");
-
-  cards.forEach(card=>{
-    const name=card.querySelector("h3")?.textContent.trim() || "";
-
-    const found=matched.some(p=>name.includes(p[1]));
-
-    card.hidden=!found;
+  // 重新渲染全部物件，避免先前的快速區域篩選限制配對結果
+  renderProperties();
+  // 使用物件資料索引比對，避免物件名稱相似或 NEW 標籤造成誤判
+  const matchedNames=new Set(matched.map(p=>p[1]));
+  document.querySelectorAll(".property-card").forEach(card=>{
+    const propertyName=card.querySelector(".property-cover strong")?.textContent.trim() || "";
+    card.hidden=!matchedNames.has(propertyName);
   });
 
   const result=document.getElementById("matchResult");
@@ -2209,8 +2209,15 @@ document.getElementById("startMatch").addEventListener("click",()=>{
        </a>`;
   }
 
-  document.getElementById("propertyGrid")
-    ?.scrollIntoView({behavior:"smooth",block:"start"});
+  // 同步更新顯示數量，並取消上方快速篩選的舊選取狀態
+  document.getElementById("propertyCount").textContent=`目前顯示 ${matched.length} 間物件`;
+  document.querySelectorAll(".filter-btn").forEach(btn=>btn.classList.remove("active"));
+  // 將畫面帶到實際存在的物件列表，避免使用者以為沒有結果
+  if(matched.length>0){
+    document.getElementById("propertyList").scrollIntoView({behavior:"smooth",block:"start"});
+  }else{
+    result.scrollIntoView({behavior:"smooth",block:"center"});
+  }
 });
 
 
@@ -2223,18 +2230,23 @@ document.getElementById("resetMatch").addEventListener("click",()=>{
   document.getElementById("matchMinPrice").value="";
   document.getElementById("matchMaxPrice").value="";
 
-  document.querySelectorAll(".property-card")
-    .forEach(card=>card.hidden=false);
+  // 恢復全部區域的物件，不受之前的快速篩選影響
+  renderProperties("全部");
 
   const result=document.getElementById("matchResult");
   result.style.display="none";
   result.innerHTML="";
+  document.getElementById("propertyCount").textContent=`目前顯示 ${properties.length} 間物件`;
+  document.querySelectorAll(".filter-btn").forEach(btn=>btn.classList.toggle("active",btn.dataset.areaFilter==="全部"));
 
 });
 
 document.querySelectorAll(".filter-btn").forEach(btn=>btn.onclick=()=>{
 document.querySelectorAll(".filter-btn").forEach(x=>x.classList.toggle("active",x===btn));
 renderProperties(btn.dataset.areaFilter);
+const matchResult=document.getElementById("matchResult");
+matchResult.style.display="none";
+matchResult.innerHTML="";
 });
 
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
