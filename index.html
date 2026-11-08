@@ -12,7 +12,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#08233f">
+<meta name="theme-color" content="#806B5B">
 <title>房仲業務工具箱｜林柏亦｜太平洋房屋</title>
 
 <style>
@@ -658,156 +658,6 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
 #openCompare:disabled{
   opacity:.45;
   cursor:not-allowed;
-}
-/* ===== 物件比較結果 ===== */
-
-.compare-panel{
-  display:none;
-  margin:16px 0 22px;
-  background:#fff;
-  border:1px solid #dbe4ec;
-  border-radius:16px;
-  overflow:hidden;
-}
-
-.compare-panel-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:14px 16px;
-  background:#08233f;
-  color:#fff;
-}
-
-.compare-panel-head strong{
-  display:block;
-  font-size:17px;
-}
-
-.compare-panel-head span{
-  display:block;
-  margin-top:2px;
-  font-size:11px;
-  opacity:.75;
-}
-
-#closeCompare{
-  border:1px solid rgba(255,255,255,.35);
-  border-radius:8px;
-  padding:8px 10px;
-  background:transparent;
-  color:#fff;
-  font-size:12px;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.compare-table-wrap{
-  width:100%;
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-}
-
-.compare-table{
-  width:100%;
-  min-width:760px;
-  border-collapse:collapse;
-  background:#fff;
-}
-
-.compare-table th,
-.compare-table td{
-  min-width:145px;
-  padding:12px 10px;
-  border-right:1px solid #e5ebf0;
-  border-bottom:1px solid #e5ebf0;
-  text-align:center;
-  vertical-align:middle;
-  font-size:13px;
-}
-
-.compare-table th:first-child,
-.compare-table td:first-child{
-  position:sticky;
-  left:0;
-  z-index:2;
-  min-width:90px;
-  width:90px;
-  background:#f4f7fa;
-  color:#08233f;
-  font-weight:800;
-}
-
-.compare-table thead th{
-  background:#eaf5fb;
-  color:#08233f;
-  font-weight:800;
-}
-
-.compare-table thead th:first-child{
-  z-index:3;
-}
-
-.compare-property-name{
-  font-size:13px;
-  line-height:1.45;
-}
-
-.compare-price{
-  color:#b74414;
-  font-weight:800;
-}
-
-.compare-winner{
-  display:inline-block;
-  margin-top:5px;
-  padding:3px 6px;
-  border-radius:6px;
-  background:#fff0e5;
-  color:#b74414;
-  font-size:10px;
-  font-weight:800;
-}
-
-.compare-link{
-  display:inline-block;
-  padding:8px 10px;
-  border-radius:8px;
-  background:#08233f;
-  color:#fff !important;
-  text-decoration:none;
-  font-size:12px;
-  font-weight:800;
-}
-
-.compare-line{
-  display:inline-block;
-  margin-top:6px;
-  padding:8px 10px;
-  border-radius:8px;
-  background:#0d6ea8;
-  color:#fff !important;
-  text-decoration:none;
-  font-size:12px;
-  font-weight:800;
-}
-
-@media(max-width:600px){
-  .compare-table{
-    min-width:850px;
-  }
-
-  .compare-table th,
-  .compare-table td{
-    min-width:150px;
-  }
-
-  .compare-table th:first-child,
-  .compare-table td:first-child{
-    min-width:82px;
-    width:82px;
-  }
 }
 /* ===== 物件比較結果 ===== */
 
@@ -1508,23 +1358,6 @@ footer,
   <div class="compare-panel-head">
     <div>
       <strong>⚖️ 物件比較</strong>
-      <span>最多比較 5 間</span>
-    </div>
-
-    <button type="button" id="closeCompare">✕ 關閉比較</button>
-  </div>
-
-  <div class="compare-table-wrap">
-    <table class="compare-table" id="compareTable"></table>
-  </div>
-
-</div>
-  <!-- ===== 物件比較結果 ===== -->
-<div id="comparePanel" class="compare-panel">
-
-  <div class="compare-panel-head">
-    <div>
-      <strong>⚖️ 物件比較</strong>
       <span>左右滑動查看比較結果</span>
     </div>
 
@@ -1751,6 +1584,59 @@ footer,
     padding:9px 12px;
   }
 }
+
+/* ===== 奶茶米白風｜全站統一色彩（置於最後確保覆蓋） ===== */
+:root { --navy:#806B5B; --blue:#92765F; --pale:#F3EBE2; --ink:#352D28; --muted:#80776F; --line:#E5DAD0; --bg:#F8F5F0; --orange:#A46D48; --orange-bg:#F5E8DA; }
+html,body { background:#F8F5F0; color:#352D28; }
+header { background:linear-gradient(135deg,#806B5B,#A78A70); color:#fff; }
+header h1,header .eyebrow,header .brandline,header .brandline strong { color:#fff; }
+header p { color:#F6EEE6; }
+.head-link.line { background:#FFF9F3; color:#604A3B; }
+.head-link.phone,footer a[href^="tel:"] { background:#A46D48; border-color:#A46D48; color:#fff; }
+.tabs { background:transparent; }
+.tab { background:#FFFCF8; color:#665143; border-color:#DFD0C2; }
+.tab.active,.tab:hover { background:#806B5B; border-color:#806B5B; color:#fff; box-shadow:0 4px 12px #806B5B26; }
+.card,.buyer-match-box,.property-card,.rental-card,.rent-v2-card { background:#FFFCF9; border-color:#E5DAD0; box-shadow:0 4px 16px #5B44310D; }
+h2,h3,.home-hero h2,.home-action-text strong,.home-tool strong,.home-contact>strong,.buyer-match-title,.rental-info strong,.rent-v2-name { color:#604A3B; }
+.sub,.footnote,.property-location,.property-count,.rent-v2-meta,.rent-v2-count,.home-action-text small,.home-tool span { color:#80776F; }
+.pill,.home-action-icon,.rental-icon { background:#F1E5D8; color:#72543E; }
+.home-action,.home-tool,.compare-select label,.match-options label { background:#FFFCF9; border-color:#E5DAD0; }
+.home-arrow { color:#92765F; }
+.home-action.home-valuation,.btn,.home-contact a,.valuation-submit,#startMatch { background:#806B5B; border-color:#806B5B; color:#fff; }
+.home-action.home-valuation strong,.home-action.home-valuation small,.home-action.home-valuation .home-arrow { color:#fff; }
+.home-action.home-valuation .home-action-icon { background:#fff; }
+.home-contact,.bluebox,.rental-contact,.match-result,.result { background:#F3EBE2; }
+.bluebox,.match-result,.rental-contact strong { color:#604A3B; }
+.property-intro { background:linear-gradient(135deg,#806B5B,#A78A70); }
+.property-intro h2 { color:#fff; }
+.property-intro p { color:#F6EEE6; }
+.property-cover { background:linear-gradient(135deg,#F3EBE2,#E8D8C8); color:#806B5B; }
+.property-meta span { background:#F3EBE2; color:#665143; }
+.property-price,.big,.result .caption,.compare-price { color:#A46D48; }
+.catalog-btn,.compare-link { background:#806B5B; color:#fff; }
+.inquiry-btn,.compare-line,.rental-line,footer a.line-cta { background:#92765F; color:#fff; }
+.filter-btn,.rent-v2-filters button { background:#FFFCF9; color:#665143; border-color:#DFD0C2; }
+.filter-btn.active,.rent-v2-filters button.active { background:#806B5B; color:#fff; border-color:#806B5B; }
+.match-options input,.compare-select input,.range { accent-color:#92765F; }
+#resetMatch,.rent-v2-detail,.rental-new-grid b { background:#F1E8DE; color:#72543E; }
+.compare-bar,.compare-panel-head { background:#806B5B; color:#fff; }
+.compare-panel-head strong,.compare-panel-head span { color:#fff; }
+#openCompare { background:#FFF9F3; color:#604A3B; }
+#clearCompare,.new-badge,.rent-v2-new { background:#A46D48; color:#fff; }
+.compare-table,.compare-panel { background:#FFFCF9; border-color:#E5DAD0; }
+.compare-table thead th { background:#E9DDD1; color:#604A3B; }
+.compare-table th:first-child,.compare-table td:first-child { background:#F3EBE2; color:#604A3B; }
+.compare-table th,.compare-table td { border-color:#E5DAD0; }
+.compare-winner { background:#F3E3CE; color:#805328; }
+.rent-v2-card { background:#FFFCF9; }
+.rent-v2-actions .rent-v2-detail { background:#F1E8DE; color:#72543E; }
+.rent-v2-actions .rent-v2-line { background:#92765F; color:#fff; }
+#rentV2Search,input,select,textarea { background:#FFFCF9; border-color:#DCCFC3; color:#352D28; }
+#rentV2Search:focus,input:focus,select:focus,textarea:focus { border-color:#A78A70; }
+footer { background:#F5EFE8F2; border-color:#E5DAD0; color:#604A3B; }
+footer .footer-brand { color:#604A3B; }
+footer a { background:#E9DDD1; color:#604A3B; }
+/* 原本的手機 2+2+1、桌面 3+2 導覽排版與所有功能維持不變 */
 </style>
 
 <script>
