@@ -1115,6 +1115,16 @@ footer,
   }
 }
 
+
+/* 屋主出租表單：維持奶茶米白及手機響應式 */
+.landlord-form label {color:#604A3B}
+.landlord-form input,.landlord-form select,.landlord-form textarea {border-color:#DCCFC3}
+.landlord-form .valuation-submit {background:#806B5B;color:#fff}
+@media(min-width:600px){
+ .landlord-form label:nth-child(3),
+ .landlord-form .landlord-full {grid-column:1/-1}
+}
+
 /* ===== 手機版買房配對選項修正 ===== */
 
 .match-options {
@@ -1820,6 +1830,31 @@ footer a { background:#E9DDD1; color:#604A3B; }
 </script>
 <!-- ===== 租屋專區新版結束 ===== -->
 
+<!-- ===== 我要出租｜屋主委託出租 ===== -->
+<section id="landlord" class="panel">
+  <div class="card valuation-card">
+    <span class="pill">屋主出租服務</span>
+    <h2>🏢 我要出租｜委託出租</h2>
+    <p class="sub">留下房屋基本資料與出租需求，我將協助您了解出租行情、招租及媒合房客。填寫完成後可透過 LINE 傳送給我。</p>
+    <div class="valuation-form landlord-form">
+      <label>姓名 <span class="required">*</span><input id="landlordName" type="text" autocomplete="name" placeholder="請輸入姓名"></label>
+      <label>聯絡電話 <span class="required">*</span><input id="landlordPhone" type="tel" autocomplete="tel" placeholder="例如：0912-345-678"></label>
+      <label>出租房屋地址 <span class="required">*</span><input id="landlordAddress" type="text" placeholder="例如：新北市中和區員山路"></label>
+      <label>房屋類型<select id="landlordType"><option value="">請選擇</option><option>公寓</option><option>華廈</option><option>大樓</option><option>透天</option><option>套房</option><option>店面</option><option>辦公室</option><option>廠房</option><option>其他</option></select></label>
+      <label>房屋坪數<input id="landlordPing" type="number" min="0" step="0.01" placeholder="例如：25"></label>
+      <label>格局<input id="landlordLayout" type="text" placeholder="例如：2房1廳1衛"></label>
+      <label>車位<select id="landlordParking"><option value="">請選擇</option><option>有</option><option>無</option><option>平面車位</option><option>機械車位</option></select></label>
+      <label>希望租金（元／月）<input id="landlordRent" type="number" min="0" placeholder="例如：25000"></label>
+      <label>目前房屋狀況<select id="landlordStatus"><option value="">請選擇</option><option>空屋</option><option>屋主自住</option><option>現有房客</option><option>整理裝修中</option><option>其他</option></select></label>
+      <label>預計可出租日期<input id="landlordDate" type="date"></label>
+      <label>是否可申請租屋補助<select id="landlordSubsidy"><option value="">尚未確定</option><option>可以</option><option>不可以</option><option>需討論</option></select></label>
+      <label>是否可養寵物<select id="landlordPet"><option value="">尚未確定</option><option>可以</option><option>不可以</option><option>需討論</option></select></label>
+      <label class="landlord-full">補充說明<textarea id="landlordNote" rows="4" placeholder="例如：家具設備、樓層、管理費、希望入住條件等"></textarea></label>
+      <button type="button" id="landlordSubmit" class="valuation-submit landlord-full">💬 整理出租資料並透過 LINE 聯絡</button>
+      <p class="valuation-privacy landlord-full">🔒 您填寫的資料僅用於出租委託洽詢。按下按鈕後，請在 LINE 聊天室貼上資料並傳送。</p>
+    </div>
+  </div>
+</section>
 <!-- ===== 我要出租結束 ===== -->
 <section id="valuation" class="panel">
   <div class="card valuation-card">
