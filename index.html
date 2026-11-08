@@ -1120,17 +1120,30 @@ footer,
 
 <body>
 
-<header>
-<div class="wrap">
-<div class="eyebrow">REAL ESTATE · FIELD TOOLKIT</div>
-<h1>房仲業務工具箱</h1>
-<p>精選售屋物件＋房產試算工具，買房賣房都能快速找到重點</p>
-<div class="brandline"><strong>太平洋房屋｜員山環球加盟店</strong><br>林柏亦　｜　0921-156-660</div>
-<div class="head-actions">
-<a class="head-link line" href="https://line.me/ti/p/iBafZ8o-pm" target="_blank">＋ LINE 加好友</a>
-<a class="head-link phone" href="tel:0921156660">☎ 直接撥打</a>
-</div>
-</div>
+<header class="brand-hero">
+  <div class="hero-art" aria-hidden="true">
+    <svg viewBox="0 0 850 260" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="heroFade" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fff7ef"/><stop offset="1" stop-color="#ead0b8"/></linearGradient></defs>
+      <path d="M0 220 Q130 142 280 205 T600 155 T850 170 V260 H0Z" fill="#dfb99a" opacity=".22"/>
+      <path d="M0 242 Q160 198 330 232 T850 211 V260H0Z" fill="#cba27f" opacity=".19"/>
+      <g fill="none" stroke="#a87957" stroke-width="1.6" opacity=".75">
+        <path d="M420 213V168h32v45m-25-35h6m8 0h6m-20 12h6m8 0h6M463 213V140h35v73m-27-61h7m10 0h5m-22 12h7m10 0h5m-22 12h7m10 0h5M507 213V157h29v56m-21-46h6m8 0h4m-18 12h6m8 0h4M546 213V113h41v100m-32-88h7m12 0h7m-26 15h7m12 0h7m-26 15h7m12 0h7m-26 15h7m12 0h7M598 213V149h34v64m-26-52h7m9 0h5m-21 14h7m9 0h5M643 213V100h43v113m-34-100h8m12 0h7m-27 15h8m12 0h7m-27 15h8m12 0h7m-27 15h8m12 0h7M697 213V139h32v74m-23-62h6m9 0h5m-20 15h6m9 0h5M740 213V157h31v56m-22-44h6m8 0h4m-18 13h6m8 0h4"/>
+        <path d="M395 213H813M595 212q64-81 127 0m-117 0q55-60 107 0M382 218H834" stroke-width="2"/>
+      </g>
+      <g fill="#9caa80" opacity=".72"><circle cx="410" cy="207" r="11"/><circle cx="438" cy="208" r="9"/><circle cx="533" cy="208" r="12"/><circle cx="731" cy="207" r="12"/><circle cx="787" cy="207" r="11"/></g>
+      <path d="M380 227q215 11 470 0" fill="none" stroke="#fff7ee" stroke-width="2" opacity=".85"/>
+    </svg>
+  </div>
+  <div class="wrap hero-content">
+    <div class="hero-brand"><span class="hero-brand-main">太平洋房屋</span><span class="hero-brand-divider"></span><span class="hero-agent">林柏亦<small>房產服務 · 員山環球加盟店</small></span></div>
+    <div class="hero-kicker">房仲業務工具箱　·　深耕雙北・在地服務</div>
+    <h1>買房・租屋・賣房・出租<br><span>從這裡開始。</span></h1>
+    <p>精選物件・免費估價・行情分析・專人諮詢</p>
+    <div class="head-actions">
+      <a class="head-link line" href="https://line.me/ti/p/iBafZ8o-pm" target="_blank" rel="noopener">💬 LINE 加好友諮詢</a>
+      <a class="head-link phone" href="tel:0921156660">☎ 直接撥打 0921-156-660</a>
+    </div>
+  </div>
 </header>
 
 <main>
@@ -2678,5 +2691,38 @@ clearCompare.addEventListener("click",()=>{
 });
 </script>
 
+
+<!-- 封面設計：精簡版建築線條插畫＋奶茶漸層（不影響其他功能） -->
+<style>
+header.brand-hero{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(112deg,#fff7ef 0%,#f5e6d8 54%,#e9cbb1 100%) !important;color:#563927 !important;padding:18px 18px 20px;min-height:240px}
+.brand-hero .hero-content{position:relative;z-index:2}
+.brand-hero .hero-art{position:absolute;inset:0;z-index:0;pointer-events:none}
+.brand-hero .hero-art svg{width:100%;height:100%;display:block;object-fit:cover}
+.brand-hero .hero-brand{display:flex;align-items:center;gap:12px;font-weight:850;color:#563927;font-size:20px;line-height:1.15}
+.brand-hero .hero-brand-divider{height:29px;width:1px;background:#bda48e}
+.brand-hero .hero-agent{font-size:17px}
+.brand-hero .hero-agent small{display:block;font-size:10px;font-weight:550;margin-top:3px;color:#7a6455}
+.brand-hero .hero-kicker{display:inline-block;margin-top:15px;padding:5px 11px;border-radius:100px;background:#8b674d;color:white;font-size:11px;letter-spacing:.3px}
+.brand-hero h1{color:#553520 !important;font-size:clamp(22px,4.4vw,32px);line-height:1.28;letter-spacing:.5px;margin:11px 0 7px;max-width:680px}
+.brand-hero h1 span{color:#835a3e}
+.brand-hero p{color:#634b3c !important;font-size:13px;font-weight:600;margin:0}
+.brand-hero .head-actions{margin-top:14px;gap:8px}
+.brand-hero .head-link{border-radius:999px;box-shadow:0 3px 9px #79543a1a;padding:9px 13px;font-size:12px}
+.brand-hero .head-link.line{background:#fffaf5;color:#563b2b;border:1px solid #dfc7b2}
+.brand-hero .head-link.phone{background:#865538;color:#fff;border:1px solid #865538}
+@media(max-width:600px){
+ header.brand-hero{padding:15px 14px 18px;min-height:0}
+ .brand-hero .hero-brand{font-size:17px;gap:9px}
+ .brand-hero .hero-agent{font-size:14px}
+ .brand-hero .hero-brand-divider{height:27px}
+ .brand-hero .hero-kicker{font-size:10px;margin-top:13px}
+ .brand-hero h1{font-size:clamp(21px,5.4vw,27px);margin:10px 0 6px}
+ .brand-hero p{font-size:11px;max-width:85%}
+ .brand-hero .head-actions{margin-top:12px}
+ .brand-hero .head-link{font-size:11px;padding:9px 10px}
+ .brand-hero .hero-art svg{transform:translateX(20%);opacity:.42}
+}
+@media(max-width:380px){.brand-hero .head-link{font-size:10px;padding:8px 9px}}
+</style>
 </body>
 </html>
