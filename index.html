@@ -969,6 +969,302 @@ footer a[href^="tel:"]{background:#b74414;color:#fff}
     width:82px;
   }
 }
+  
+/* =========================================
+   柏亦房產工具箱｜奶茶米白風
+   配色覆蓋版：不修改原本功能
+   ========================================= */
+
+:root {
+  --navy: #806B5B;
+  --blue: #92765F;
+  --pale: #F3EBE2;
+  --ink: #352D28;
+  --muted: #80776F;
+  --line: #E5DAD0;
+  --bg: #F8F5F0;
+  --orange: #A46D48;
+  --orange-bg: #F5E8DA;
+}
+
+/* 全站背景與文字 */
+html {
+  background: #F8F5F0;
+}
+
+body {
+  background: #F8F5F0;
+  color: #352D28;
+}
+
+/* 頂部品牌區 */
+header,
+.site-header {
+  background: linear-gradient(
+    135deg,
+    #806B5B 0%,
+    #A78A70 100%
+  );
+  color: #FFFFFF;
+}
+
+/* 導覽列 */
+.tabs,
+.tab-bar,
+nav {
+  background: #F1E8DE;
+}
+
+.tab,
+nav button {
+  color: #665143;
+  border-color: #DFD0C2;
+}
+
+.tab.active,
+.tab:hover {
+  background: #806B5B;
+  color: #FFFFFF;
+  border-color: #806B5B;
+}
+
+/* 主要內容與卡片 */
+.panel,
+.card {
+  border-color: #E5DAD0;
+}
+
+.card {
+  background: #FFFFFF;
+  box-shadow: 0 5px 20px rgba(91,68,49,.06);
+}
+
+h1,
+h2,
+h3 {
+  color: #604A3B;
+}
+
+/* 說明文字 */
+.sub,
+.muted {
+  color: #80776F;
+}
+
+/* 小標籤 */
+.pill {
+  background: #F1E5D8;
+  color: #72543E;
+  border-color: #E5D3C2;
+}
+
+/* 按鈕與連結 */
+button {
+  accent-color: #806B5B;
+}
+
+a {
+  accent-color: #806B5B;
+}
+
+input,
+select,
+textarea {
+  border-color: #DCCFC3;
+  color: #352D28;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline-color: #A78A70;
+  border-color: #A78A70;
+}
+
+/* 售屋物件卡片 */
+.property-card {
+  background: #FFFFFF;
+  border-color: #E5DAD0;
+  box-shadow: 0 4px 16px rgba(91,68,49,.06);
+}
+
+.property-card h3 {
+  color: #604A3B;
+}
+
+.property-actions .catalog-btn,
+.catalog-btn {
+  background: #806B5B;
+  color: #FFFFFF;
+}
+
+.property-actions .inquiry-btn,
+.inquiry-btn {
+  background: #A78A70;
+  color: #FFFFFF;
+}
+
+/* NEW 標籤 */
+.new-badge {
+  background: #A46D48;
+  color: #FFFFFF;
+}
+
+/* 買房需求配對 */
+.buyer-match-box {
+  background: #FCFAF7;
+  border-color: #E3D5C8;
+}
+
+.buyer-match-box label {
+  color: #604A3B;
+}
+
+#startMatch {
+  background: #806B5B;
+  color: #FFFFFF;
+}
+
+#resetMatch {
+  background: #F1E8DE;
+  color: #604A3B;
+}
+
+/* 物件加入比較 */
+.compare-select {
+  background: #F5EFE8;
+  border-color: #E5DAD0;
+  color: #604A3B;
+}
+
+.compare-select label {
+  color: #604A3B;
+}
+
+.compare-check {
+  accent-color: #806B5B;
+}
+
+/* 物件比較操作列 */
+.compare-bar {
+  background: #F1E8DE;
+  border-color: #DCCBBE;
+  color: #604A3B;
+}
+
+#openCompare {
+  background: #806B5B;
+  color: #FFFFFF;
+}
+
+#openCompare:disabled {
+  background: #CFC1B5;
+  color: #FFFFFF;
+}
+
+/* 物件比較結果 */
+.compare-panel {
+  background: #FFFFFF;
+  border-color: #DCCBBE;
+}
+
+.compare-panel-head {
+  background: #806B5B;
+  color: #FFFFFF;
+}
+
+.compare-panel-head strong,
+.compare-panel-head span {
+  color: #FFFFFF;
+}
+
+.compare-table th {
+  background: #F1E8DE;
+  color: #604A3B;
+}
+
+.compare-table td {
+  border-color: #E5DAD0;
+}
+
+.compare-table td:first-child {
+  background: #F8F5F0;
+  color: #604A3B;
+}
+
+.compare-winner {
+  background: #F3E3CE;
+  color: #805328;
+}
+
+.compare-link {
+  background: #806B5B;
+  color: #FFFFFF;
+}
+
+.compare-line {
+  background: #A78A70;
+  color: #FFFFFF;
+}
+
+/* 租屋專區 */
+.rental-card,
+.rental-new-grid a {
+  background: #FFFFFF;
+  border-color: #E5DAD0;
+}
+
+.rental-info strong,
+.rental-new-grid strong,
+.rental-new-list h3 {
+  color: #604A3B;
+}
+
+.rental-info span,
+.rental-new-grid span,
+.rental-new-list p {
+  color: #80776F;
+}
+
+.rental-card a,
+.rental-new-grid b {
+  background: #F1E8DE;
+  color: #72543E;
+}
+
+.rental-line {
+  background: #806B5B;
+  color: #FFFFFF;
+}
+
+/* 常用按鈕互動 */
+.catalog-btn:hover,
+.inquiry-btn:hover,
+.compare-link:hover,
+.compare-line:hover,
+.rental-card a:hover {
+  filter: brightness(.94);
+}
+
+/* 頁尾 */
+footer,
+.site-footer {
+  background: #F5EFE8;
+  border-color: #E5DAD0;
+  color: #604A3B;
+}
+
+/* 手機版保持原本排版 */
+@media (max-width: 600px) {
+  body {
+    background: #F8F5F0;
+  }
+
+  .card {
+    box-shadow: 0 3px 12px rgba(91,68,49,.05);
+  }
+}
+
 </style>
 </head>
 
