@@ -2319,6 +2319,51 @@ document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b))
 document.querySelectorAll(".panel").forEach(x=>x.classList.toggle("active",x.id===b.dataset.tab));
 });
 
+/* ===== 記住客戶原本瀏覽的頁面 ===== */
+(function () {
+  const KEY = "bai_last_page";
+
+  function savePage(id) {
+    if (id) sessionStorage.setItem(KEY, id);
+  }
+
+  function restorePage() {
+    const saved = sessionStorage.getItem(KEY);
+    if (!saved) return;
+
+    const panel = document.getElementById(saved);
+    if (!panel || !panel.classList.contains("panel")) return;
+
+    document.querySelectorAll(".panel").forEach(p => {
+      p.classList.toggle("active", p.id === saved);
+    });
+
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.classList.toggle(
+        "active",
+        tab.dataset.tab === saved
+      );
+    });
+  }
+
+  // 記住上方導覽列切換
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      savePage(tab.dataset.tab);
+    });
+  });
+
+  // 記住首頁功能按鈕切換
+  document.querySelectorAll("[data-go]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      savePage(btn.dataset.go);
+    });
+  });
+
+  // 網站重新開啟時恢復頁面
+  restorePage();
+})();
+
 const $=id=>document.getElementById(id);
 const num=id=>Math.max(0,Number($(id).value)||0);
 const money=n=>Math.round(n).toLocaleString("zh-TW");
