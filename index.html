@@ -2184,6 +2184,29 @@ p[0]==="桃園區"?"桃園市":p[0]==="文山區"?"台北市":"新北市"}${p[0]
 document.getElementById("propertyCount").textContent=`目前顯示 ${shown.length} 間物件`;
 }
 renderProperties();
+  
+/* ===== 記住物件瀏覽位置 ===== */
+(function () {
+  const KEY = "bai_property_scroll";
+
+  // 離開或重新整理前，記住捲動位置
+  window.addEventListener("pagehide", () => {
+    sessionStorage.setItem(KEY, String(window.scrollY));
+  });
+
+  // 重新載入後，恢復原本位置
+  window.addEventListener("load", () => {
+    const saved = sessionStorage.getItem(KEY);
+    if (saved === null) return;
+
+    const y = Number(saved);
+    if (!Number.isFinite(y)) return;
+
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: y, behavior: "instant" });
+    });
+  });
+})();
 /* ===== 買房需求配對器 ===== */
 
 function getCheckedValues(id){
